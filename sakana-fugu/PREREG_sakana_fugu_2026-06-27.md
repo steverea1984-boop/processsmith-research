@@ -2,7 +2,7 @@
 
 **Prepared:** 2026-06-27
 **For:** ProcessSmith
-**Status:** Pre-registration — FREEZE before any model output is generated
+**Status:** Pre-registration — **FROZEN 2026-06-27** (no edits past the first run)
 **Companion to:** [Evaluation Plan](EVAL_PLAN_sakana_fugu_2026-06-27.md) · [Research Brief](REPORT_sakana_fugu_2026-06-27.md)
 
 ---
@@ -96,6 +96,12 @@ orchestration. **Ground truth held:** the [Debate-Harness postmortem](../../Deba
 **Key points (7):** single ≥ orchestration on knowable-answer tasks · debate can *corrupt* a
 right answer · ceiling effect · self-consistency as cheap baseline · cost/latency tax of
 orchestration · the narrow case where it might help (frontier-hard) · cites ≥1 real source.
+
+> **Calibration vs discrimination.** R3 (ClickUp API) and R5 (orchestration vs single) use
+> ground truth we already hold, so all three arms may *ceiling* on them — they function as
+> **integrity / fabrication checks** (catching a confident-wrong answer), not as items expected
+> to separate the arms. Discriminating power is meant to come from Classes 2 and 3 plus
+> R1/R2/R4, which have real headroom. Score R3/R5 as pass/fail integrity, not coverage deltas.
 
 ---
 
