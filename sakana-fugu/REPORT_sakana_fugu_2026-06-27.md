@@ -47,7 +47,7 @@ Current availability signals:
 Important restrictions and caveats:
 
 - It is a hosted service, not a local deployment path.
-- Sakana says it does not provide service to users in EU/EEA member states.
+- Sakana says it is not yet available in the EU/EEA while it works toward GDPR and EU-specific compliance.
 - Access elsewhere can still depend on network conditions and local regulations.
 - Underlying routing and exact model selection are proprietary and not exposed per query.
 - Fugu can opt out of specific providers/models through a custom model pool; Fugu Ultra's pool is fixed.
@@ -171,7 +171,7 @@ Sakana says training-data use can be opted out in the console. Before using Fugu
 
 ### Regional Availability
 
-Sakana says it does not provide service to EU/EEA users. Steve and ProcessSmith are in Canada, so this does not appear to block local testing, but client work involving EU/EEA users or data needs caution.
+Sakana says it is not yet available in the EU/EEA while it works toward GDPR compliance. Steve and ProcessSmith are in Canada, so this does not appear to block local testing, but client work involving EU/EEA users or data needs caution.
 
 ### Benchmark Claims
 
