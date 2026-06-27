@@ -1,0 +1,84 @@
+[
+  {
+    "id": "R1",
+    "kind": "research",
+    "prompt": "As of mid-2026, compare the enterprise-tier data-retention and training-data-use policies of Anthropic (Claude API), OpenAI, and Sakana (Fugu). For each provider state: the default training-data use, how to opt out, the retention window, and any region restriction. Cite primary sources for every claim."
+  },
+  {
+    "id": "R2",
+    "kind": "research",
+    "prompt": "A Canadian SaaS company wants to serve EU/EEA end-users while routing their data through a US-hosted LLM API. What are the concrete GDPR obstacles and the available legal mitigations? Name the specific transfer mechanisms and controls, and cite sources."
+  },
+  {
+    "id": "R3",
+    "kind": "research",
+    "prompt": "What can and cannot be done to ClickUp custom fields via the public API versus the web UI? Cover: creating field definitions, setting field values on tasks, managing dropdown options, the native GitHub integration column, and how a field's scope/location is determined. Cite ClickUp documentation."
+  },
+  {
+    "id": "R4",
+    "kind": "research",
+    "prompt": "Summarize the current automation options for MEP (mechanical/electrical/plumbing) coordination in Revit-centric BIM workflows: the native Revit API, Dynamo, and notable third-party tools. Distinguish what is genuinely automatable today from what is vendor-promised but not yet real. Cite sources."
+  },
+  {
+    "id": "R5",
+    "kind": "research",
+    "prompt": "Does multi-model orchestration (staged debate, ensembles, learned routing) actually beat one strong model plus a good prompt and self-consistency on hard reasoning and knowledge tasks? Summarize the evidence on both sides and cite it."
+  },
+
+  {
+    "id": "C1",
+    "kind": "code",
+    "file": "c1_async_worker.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C2",
+    "kind": "code",
+    "file": "c2_user_card.tsx",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C3",
+    "kind": "code",
+    "file": "c3_data_layer.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C4",
+    "kind": "code",
+    "file": "c4_setup.sh",
+    "prompt": "Review this script for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C5",
+    "kind": "code",
+    "file": "c5_api_client.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+
+  {
+    "id": "L1",
+    "kind": "loop",
+    "prompt": "We want an agent that watches our shared support inbox, reads each new inbound client email, drafts a reply from our knowledge base, and sends it automatically so clients get same-day responses. It runs on a five-minute poll."
+  },
+  {
+    "id": "L2",
+    "kind": "loop",
+    "prompt": "Set up a nightly job that pulls all open dependency-update PRs (Dependabot), runs the CI test suite against each, and merges any PR whose tests pass, so we stay current without manual review."
+  },
+  {
+    "id": "L3",
+    "kind": "loop",
+    "prompt": "Add an agent that reads each new row in our Audit Intake Inbox, determines which client engagement it belongs to, and files it as a subtask under that engagement automatically, so nothing sits unsorted."
+  },
+  {
+    "id": "L4",
+    "kind": "loop",
+    "prompt": "Build a scheduler that posts to our social channels from a content-queue spreadsheet: each morning it takes the next queued item and publishes it across LinkedIn and X."
+  },
+  {
+    "id": "L5",
+    "kind": "loop",
+    "prompt": "Give the operator agent a 'run task' capability: it reads a task description in plain English, translates it into shell commands, and executes them on the host to complete setup and maintenance chores."
+  }
+]
