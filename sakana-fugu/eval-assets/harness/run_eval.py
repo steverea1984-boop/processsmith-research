@@ -42,18 +42,17 @@ OPUS_MODEL = "claude-opus-4-8"
 FUGU_MODEL = "fugu-ultra"
 SAKANA_BASE_URL = "https://api.sakana.ai/v1"
 
-# USD per 1M tokens (input, output). Fugu Ultra <=272K-context tier, per the brief.
-# Opus prices are left null on purpose — fill them in from current Anthropic
-# pricing before trusting the dollar figures (token counts are always recorded).
+# USD per 1M tokens (input, output). Opus 4.8 = $5/$25; Fugu Ultra = $5/$30
+# (<=272K-context tier, per the brief). "Output" includes thinking tokens.
 PRICES = {
-    OPUS_MODEL: {"in": None, "out": None},   # TODO: set current Opus 4.8 $/Mtok
+    OPUS_MODEL: {"in": 5.0, "out": 25.0},
     FUGU_MODEL: {"in": 5.0, "out": 30.0},
 }
 
 SELF_CONSISTENCY_N = 3
 MERGE_METHOD = "synthesis"   # recorded in every Arm-C result
 MAX_RETRIES = 4
-MAX_TOKENS = 4096
+MAX_TOKENS = 16000           # room for adaptive thinking + answer without truncation
 FUGU_TIMEOUT_S = 600         # Fugu Ultra can be slow; give it room
 
 
@@ -74,12 +73,15 @@ def _sakana_client():
     return OpenAI(base_url=SAKANA_BASE_URL, api_key=key)
 
 
-def _opus_call(client, prompt, temperature):
+def _opus_call(client, prompt):
+    # Opus 4.8 rejects temperature/top_p/top_k (400). Diversity for Arm C comes
+    # from inherent sampling variation across repeated calls, not a temperature knob.
     def _do():
         resp = client.messages.create(
             model=OPUS_MODEL,
             max_tokens=MAX_TOKENS,
-            temperature=temperature,
+            thinking={"type": "adaptive"},
+            output_config={"effort": "high"},
             messages=[{"role": "user", "content": prompt}],
         )
         text = "".join(b.text for b in resp.content if getattr(b, "type", None) == "text")
@@ -151,7 +153,7 @@ def _now():
 # --------------------------------------------------------------------------- #
 
 def run_arm_a(item, prompt, anth):
-    text, usage, retries, latency = _timed_retry(_opus_call(anth, prompt, 0.0))
+    text, usage, retries, latency = _timed_retry(_opus_call(anth, prompt))
     return {
         "arm": "A", "model": OPUS_MODEL, "method": "single",
         "output": text, "usage": usage, "retries": retries,
@@ -171,7 +173,7 @@ def run_arm_b(item, prompt, sak):
 def run_arm_c(item, prompt, anth):
     samples, tin, tout, retries, latency = [], 0, 0, 0, 0.0
     for _ in range(SELF_CONSISTENCY_N):
-        text, usage, r, lat = _timed_retry(_opus_call(anth, prompt, 1.0))
+        text, usage, r, lat = _timed_retry(_opus_call(anth, prompt))
         samples.append(text)
         tin += usage["in"]; tout += usage["out"]; retries += r; latency += lat
 
@@ -182,7 +184,7 @@ def run_arm_c(item, prompt, anth):
         "and discard anything wrong or unsupported. Return only the final answer.\n\n"
         f"TASK:\n{prompt}\n\n{joined}"
     )
-    merged, usage, r, lat = _timed_retry(_opus_call(anth, synth_prompt, 0.0))
+    merged, usage, r, lat = _timed_retry(_opus_call(anth, synth_prompt))
     tin += usage["in"]; tout += usage["out"]; retries += r; latency += lat
     total = {"in": tin, "out": tout}
     return {

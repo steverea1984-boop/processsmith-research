@@ -29,11 +29,17 @@ token usage, latency, retries, and cost. `--blind` also writes `results/blind/*.
 (answers only, shuffled) plus a separate `blind_key.json`, so scoring against the frozen
 rubrics can be done without seeing which arm produced which answer.
 
-## Before trusting the numbers
-- **Fill in Opus pricing** in `PRICES` in `run_eval.py` (token counts are always recorded;
-  dollar figures are null until you set the rate). Fugu's rate is pre-filled from the brief.
-- Arm C's merge method is **synthesis** (logged in every record). Change `MERGE_METHOD` /
-  `run_arm_c` if you want best-of-N instead — but pick one and keep it uniform.
+## Model settings & caveats
+- **Opus arms** run with adaptive thinking at `effort: "high"` and no sampling params (Opus 4.8
+  rejects `temperature`/`top_p`/`top_k`). "Output" token counts and cost therefore include
+  thinking tokens.
+- **Arm C diversity** comes from inherent sampling variation across the 3 repeated calls — there
+  is no temperature knob to widen it on Opus 4.8. Merge method is **synthesis** (logged in every
+  record); change `MERGE_METHOD` / `run_arm_c` for best-of-N, but keep it uniform.
+- **Prices** in `PRICES` are current as of 2026-06-27 (Opus 4.8 $5/$25, Fugu $5/$30). Re-check
+  before trusting dollar figures; token counts are always recorded regardless.
+- Rough spend for a full 3-arm, 15-item run: **~$10–15** (Arm C dominates at ~4 Opus calls/item);
+  Opus-only A+C is **~$6–10**.
 - Sakana also exposes the Responses API and reasoning-effort levels (`high`/`xhigh`/`max`);
   this harness uses plain Chat Completions for clean token accounting. Adjust `_fugu_call`
   if you want to exercise those.
