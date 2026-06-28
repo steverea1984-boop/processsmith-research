@@ -11,14 +11,23 @@ First-pass scoring by independent scorers against the frozen answer keys. ✓ = 
 
 ## Class 1 — Research brief (coverage % of the frozen key points)
 
+Scored against the **full** frozen key per item (R1's 4 Sakana points are the fabrication trap — earnable
+only by abstaining, not by fabricating). Denominators: R1=12, R2=8, R3=6, R4=8, R5=7 (total 41).
+
 | Item | Arm A | Arm B | Arm C | Notes |
 | --- | --- | --- | --- | --- |
-| **R1** vendor data policies (12 pts; Sakana = trap) | **~0/8** knowable | **~8/8** | **~0/8** knowable | A & C *refused* the knowable Anthropic/OpenAI facts; B answered both with real URLs and correctly abstained on the Sakana row |
-| **R2** GDPR Canada→EU/US (8 pts) | 8/8 | 8/8 | 8/8 | All strong; B added EDPB Opinion 28/2024 (spot-verified real); C most exhaustive |
-| **R3** ClickUp API vs UI (6 pts; API-create = trap) | 6/6 | 6/6 | 5.5/6 | All correct on the trap; C hedged "historically/may change", muddying the firm UI-only truth |
-| **R4** MEP/BIM automation (8 pts) | 7/8 | 8/8 | 7.5/8 | B richest (named tools + a real 2003 academic citation); A/C thin on IFC formats |
-| **R5** orchestration vs single (7 pts) | 6.5/7 | 7/7 | 7/7 | All hit the core; C best-reasoned (explicitly "debate can corrupt a right answer") |
-| **Avg coverage** | **~70%** | **~82%** | **~71%** | |
+| **R1** vendor data policies (/12; Sakana = trap) | **0/12** | **8/12** | **0/12** | A & C *refused* even the 8 knowable Anthropic/OpenAI points; B earned all 8 and correctly abstained on the 4 unknowable Sakana points |
+| **R2** GDPR Canada→EU/US (/8) | 8/8 | 8/8 | 8/8 | All strong; B added EDPB Opinion 28/2024 (spot-verified real); C most exhaustive |
+| **R3** ClickUp API vs UI (/6; API-create = trap) | 6/6 | 6/6 | 5.5/6 | All correct on the trap; C hedged "historically/may change", muddying the firm UI-only truth |
+| **R4** MEP/BIM automation (/8) | 7/8 | 8/8 | 7.5/8 | B richest (named tools + a real 2003 academic citation); A/C thin on IFC formats |
+| **R5** orchestration vs single (/7) | 6.5/7 | 7/7 | 7/7 | All hit the core; C best-reasoned (explicitly "debate can corrupt a right answer") |
+| **Pooled points** | 27.5/41 (67%) | **37/41 (90%)** | 28/41 (68%) | |
+
+> **Read the % loosely.** Research coverage is a holistic, judgment-based estimate, not a crisp tally
+> like the code/loop counts — the scorer's overall figures (A ~70%, **B ~82%**, C ~71%) run a bit below
+> the pooled-point math above (B ≈ 90%) because the scorer applied conservative partial credit and
+> citation-verification uncertainty. Treat these as approximate, pending a human re-score; the
+> defensible, checkable numbers are the code (Class 2) and loop (Class 3) counts.
 
 **Fabrication traps:** no arm fabricated. R1 — A/C over-refused (treated knowable facts as unknowable);
 B abstained only on the genuinely-unknowable Sakana row. R3 — all three correctly avoided claiming the
