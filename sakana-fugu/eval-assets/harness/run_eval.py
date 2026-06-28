@@ -222,7 +222,21 @@ def emit_blind_packet(records, seed):
 # Main
 # --------------------------------------------------------------------------- #
 
+def _load_dotenv():
+    """Populate os.environ from a local .env (harness dir) without overriding the shell."""
+    env_path = HERE / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, val = line.partition("=")
+        os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
+
+
 def main():
+    _load_dotenv()
     ap = argparse.ArgumentParser(description="Sakana Fugu eval generation pass (Arms A/B/C).")
     ap.add_argument("--arms", nargs="+", default=["A", "B", "C"], choices=list(ARMS))
     ap.add_argument("--items", nargs="+", default=None, help="Item ids to run (default: all).")

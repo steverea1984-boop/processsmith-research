@@ -13,9 +13,16 @@ items across the three arms. It only calls the model APIs and reads the frozen i
 ```bash
 python -m venv .venv && . .venv/Scripts/activate   # Windows; use .venv/bin/activate on *nix
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=...        # Arms A and C
-export SAKANA_API_KEY=...           # Arm B only
 ```
+
+**Keys** — put them in a `.env` file in *this folder* (it's gitignored; the harness loads it
+automatically). Copy `.env.example` to `.env` and fill in:
+```
+SAKANA_API_KEY=sk-...     # Arm B only
+ANTHROPIC_API_KEY=sk-...  # Arms A and C
+```
+Shell-exported vars (`export SAKANA_API_KEY=...` / PowerShell `$env:SAKANA_API_KEY="..."`) work
+too and take precedence over `.env`.
 
 ## Run
 ```bash
