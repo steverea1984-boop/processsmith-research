@@ -92,4 +92,33 @@ Batch-merge interaction effects and cross-client confidentiality-as-incident wer
 
 ## Class 4 — Code-review tiebreaker (C6–C10, expertise-level)
 
-_Pending — run in progress. Results appended on completion._
+Each snippet: 2 subtle planted defects + 1 trap (correct code that looks wrong). Strict scoring.
+
+| Item | Planted defects (key) | A recall | B recall | C recall | Traps flagged (A/B/C) |
+| --- | --- | --- | --- | --- | --- |
+| **C6** webhook verify | re-serialized-body sig · non-constant-time compare | 2/2 | 2/2 | 2/2 | –/–/– |
+| **C7** rate limiter | `<` vs `<=` boundary · O(n²) pop(0) | 2/2 | 2/2 | 2/2 | **A**/**B**/– (intentional in-place mutation) |
+| **C8** proxy | `endsWith` allowlist bypass · no timeout | 2/2 | 2/2 | 2/2 | –/–/– |
+| **C9** invoicing | penny-allocation · order-of-rounding | 2/2 | 2/2 | 2/2 | –/**B**/– (correct ROUND_HALF_UP called wrong) |
+| **C10** TTL cache | per-call lock (no serialize) · missing double-check | 2/2 | 2/2 | 2/2 | –/–/– |
+| **Planted found** | /10 | **10** | **10** | **10** | |
+| **Traps wrongly flagged** | /5 | **1** | **2** | **0** | |
+| **False positives** | | ~0 | ~0 | ~0 | |
+
+**Recall still tied at 10/10** — even on expertise-level bugs (re-serialized-body signature confusion,
+`<` vs `<=`, the lock-that-doesn't-lock, the missing double-check), all three arms caught every planted
+defect. The separation showed up on **precision**: self-consistency (C) was cleanest (0 traps), single
+Opus (A) flagged 1 (C7's documented mutation), and **Fugu (B) was worst with 2** — it flagged C7's
+intentional mutation *and* asserted the deliberately-correct `ROUND_HALF_UP` was the wrong rounding mode.
+
+**Ranking on the hard set: C ≥ A > B.** Fugu caught **zero** subtle defects single Opus missed, while
+its much longer outputs (5–11K tokens, 150–335s, ~5–10× the cost) bought only more over-flagging. This
+*reverses* the main-eval impression that B was the most precise reviewer.
+
+> Caveat: the **recall tie (10/10) is rock-solid**; the **trap counts are softer** — whether flagging a
+> documented-but-risky pattern (C7 mutation) or pushing banker's-rounding (C9) is a "false positive" or a
+> legitimate hardening note is a judgment call the scorer made strictly. n = 5. But the direction is
+> clear: Fugu's extra deliberation does **not** improve code-review recall and tends to *over-flag*.
+
+**Conclusion for the Trial lane:** explicitly **exclude code review** from Fugu's use. Even with hard
+bugs, single Opus matches it on recall at ~1/10 the cost and latency, with better precision.

@@ -43,6 +43,15 @@ as correct; caught peripheral-but-real issues like C4's installer-runs-before-`s
 and Arm C edged Arm A on consistency — **but Fugu found no planted defect the cheap arms missed.** On
 this class, the 5× cost and 10× latency bought rigor, not recall.
 
+**Tiebreaker (C6–C10, expertise-level bugs) — confirmed and sharpened.** A second, harder code set was
+run after this ceiling result (re-serialized-body signature confusion, `<` vs `<=` boundary, a
+lock-that-doesn't-lock, penny-allocation). **Recall tied again at 10/10 for all three arms** — the
+subtle bugs didn't separate them. The separation appeared on *precision*: self-consistency (C) flagged
+0 traps, single Opus (A) 1, and **Fugu (B) the most at 2** — it cried wolf on correct code (an
+intentional in-place mutation and a correct `ROUND_HALF_UP`). So even on hard bugs, Fugu's extra
+deliberation bought **no recall and worse precision**, at ~5–10× the cost. Code review is firmly
+**not** a Fugu use case. (See [tiebreaker scores](SCORES_sakana_fugu_2026-06-27.md#class-4--code-review-tiebreaker-c6c10-expertise-level).)
+
 ### Loop-contract critique (seeded risks) — **Fugu clearly best**
 | Arm | Seeded risks (/25) | Verifier quality | Bonus risks |
 | --- | --- | --- | --- |
