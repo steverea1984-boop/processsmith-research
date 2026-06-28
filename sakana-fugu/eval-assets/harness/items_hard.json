@@ -1,0 +1,32 @@
+[
+  {
+    "id": "C6",
+    "kind": "code",
+    "file": "c6_webhook_verify.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C7",
+    "kind": "code",
+    "file": "c7_rate_limit.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C8",
+    "kind": "code",
+    "file": "c8_proxy.js",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C9",
+    "kind": "code",
+    "file": "c9_invoice.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  },
+  {
+    "id": "C10",
+    "kind": "code",
+    "file": "c10_cache.py",
+    "prompt": "Review this code for correctness, security, and reliability issues. List each issue you find with a one-line explanation."
+  }
+]

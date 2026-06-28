@@ -240,11 +240,13 @@ def main():
     ap = argparse.ArgumentParser(description="Sakana Fugu eval generation pass (Arms A/B/C).")
     ap.add_argument("--arms", nargs="+", default=["A", "B", "C"], choices=list(ARMS))
     ap.add_argument("--items", nargs="+", default=None, help="Item ids to run (default: all).")
+    ap.add_argument("--items-file", default=None, help="Items JSON to load (default: items.json).")
     ap.add_argument("--blind", action="store_true", help="Also emit an anonymized scoring packet.")
     ap.add_argument("--seed", type=int, default=0, help="Seed for blind-packet shuffling.")
     args = ap.parse_args()
 
-    items = json.loads(ITEMS_PATH.read_text(encoding="utf-8"))
+    items_path = (HERE / args.items_file) if args.items_file else ITEMS_PATH
+    items = json.loads(items_path.read_text(encoding="utf-8"))
     if args.items:
         wanted = set(args.items)
         items = [it for it in items if it["id"] in wanted]
