@@ -5,6 +5,7 @@ Research reports and analysis produced for ProcessSmith — AI agents, business 
 ## Reports
 
 - [Open-Source AI Tools vs Current OpenClaw Stack](open-source-ai-tools/REPORT_2026-06-29.md) — comparison of video-sourced open-source AI tools against current OpenClaw/ProcessSmith workflows, with adoption priorities and cautions.
+- [OpenClaw Business Architecture Research](openclaw-business-architecture/README.md) — research package for evaluating safe identity-aware OpenClaw deployments against enterprise agent/model platforms and SDK-first approaches.
 - [OpenClaw at Scale for Business — Damian Finol's Approach & Beyond](openclaw-scale-damian-finol/REPORT.md) — Enterprise OpenClaw deployment patterns, privilege-separated agent architecture, and ProcessSmith positioning implications.
 - [Sakana Fugu for ProcessSmith and OpenClaw](sakana-fugu/REPORT_sakana_fugu_2026-06-27.md) — Public-safe research brief on Sakana's hosted multi-agent model API, availability, Codex/API integration paths, ProcessSmith fit, and adoption cautions.
   - [Narrow Evaluation Plan](sakana-fugu/EVAL_PLAN_sakana_fugu_2026-06-27.md) — Pre-registered 3-arm experiment (single vs. Fugu vs. self-consistency) reusing the Debate-Harness scoring discipline, with pass criteria and data-governance gates.
