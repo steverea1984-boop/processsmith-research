@@ -8,6 +8,12 @@ protocols and a client-trust asset?
 113 claims extracted, top 25 adversarially verified (3 independent refute-attempt votes
 per claim). Claims whose vote pool was cut off by session limits were verified manually
 against their primary sources the same day (marked *inline-verified*).
+**Status:** Research findings — **not legal advice, and not signed-off policy.**
+Operational adoption happens only through the ProcessSmith Security Framework
+(`processsmith-systems/docs/security/`), whose public commitments are gated on Steve's
+sign-off table and whose paid-client readiness is gated on privacy-lawyer review
+(processsmith-systems issue #28). Until those gates close, everything below is research
+input to that process, not a compliance position.
 **Outcome:** The findings were operationalized as the ProcessSmith Security Framework —
 `processsmith-systems/docs/security/` (merged PR #27) — and the `agent-security-standard`
 agent skill. This report is the evidence base; the framework is the policy. Update the
@@ -55,7 +61,7 @@ framework, not this report, when practice changes.
 | 8 | Purpose limitation: a recording made for one stated purpose (e.g. reviewing workflow needs) may not be reused for another (marketing, profiling, training). An alternative channel must be offered if the caller objects. | Same |
 | 9 | Meaningful consent must emphasize four elements up front: what is collected, who it's shared with, for what purpose, and risk of harm. **Express** consent is required when info is sensitive, the use is outside reasonable expectations, or there's meaningful residual risk of significant harm. | [OPC/OIPC consent guidelines](https://www.priv.gc.ca/en/privacy-topics/business-privacy/collecting-personal-information/consent/gl_omc_201805/) |
 | 10 | CRTC: automated-voice (ADAD) **telemarketing** calls require express prior consent. **Even non-solicitation ADAD calls** must open with who the call is on behalf of and its purpose (public-service calls exempt; appointment-reminder-type calls not specifically addressed). | [CRTC Unsolicited Telecommunications Rules, Part IV](https://www.crtc.gc.ca/eng/trules-reglest.htm) |
-| 11 | Criminal Code Part VI is one-party consent: a participant (or their tool) may lawfully record a conversation they're part of. Legality under the Criminal Code does not remove PIPEDA's commercial consent duties — both bars apply. | [privacylawyer.ca analysis](https://blog.privacylawyer.ca/2025/09/recording-conversations-using-ai.html) (secondary) |
+| 11 | Criminal Code s. 184(1) makes knowingly intercepting a private communication an offence; s. 184(2)(a) exempts interception with "the consent to intercept, express or implied, of the originator ... or of the person intended ... to receive it" — i.e., one-party consent. A participant (or their tool) may lawfully record a conversation they're part of. Criminal legality does not remove PIPEDA's commercial consent duties — both bars apply. | [Criminal Code s. 184](https://laws-lois.justice.gc.ca/eng/acts/c-46/section-184.html) (primary); commentary: [privacylawyer.ca](https://blog.privacylawyer.ca/2025/09/recording-conversations-using-ai.html) |
 
 ### EU AI Act (why it doesn't bind, and what changed in 2026)
 
