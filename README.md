@@ -2,6 +2,11 @@
 
 Research reports and analysis produced for ProcessSmith — AI agents, business infrastructure, security architecture, and industry analysis.
 
+## Method
+
+- [The ProcessSmith Research Method](research-architecture/DESIGN_research-method_2026-07-07.md) — standing 7-stage pipeline (scope → angles → gather → extract → verify → synthesize → package) with depth tiers T1–T3r, standing rules bought with real failures, and the engine-selection table (Claude Code deep-research vs. OpenClaw Researcher vs. manual).
+- [Monthly Landscape Watch design](research-architecture/DESIGN_monthly-landscape-watch_2026-07-07.md) — recurring T3r delta run maintaining the OpenClaw/agentic baseline; designed for delegation to the OpenClaw Researcher with agent-security-standard controls, budgets, escalation path, and cadence governance. Not yet implemented.
+
 ## Reports
 
 - [OpenClaw & Business Agentic Architectures: State of Play](openclaw-agentic-landscape/REPORT_openclaw-agentic-landscape_2026-07-07.md) — Adversarially verified baseline (July 2026) on OpenClaw architecture, business vs. personal deployments, May–July releases, security posture (ClawJacked, ClawHub malware, CVE wave), plus the Google/Microsoft consensus on business agent architectures and actions for Jimmy/Max. Designed for recurring monthly updates.
