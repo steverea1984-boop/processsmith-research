@@ -2,6 +2,7 @@
 
 **Date:** 2026-07-07
 **Method:** Deep-research workflow (103 agents): 5 search angles, 21 sources fetched, 105 claims extracted, top 25 adversarially verified with 3 independent votes each. Result: 21 confirmed, 4 killed, 0 unverified.
+**Evidence:** Full claim-level verification record (findings F1-F14 with votes and quotes, killed claims K1-K4, 21-source register with access dates, caveats, open questions) in [EVIDENCE_openclaw-agentic-landscape_2026-07-07.md](EVIDENCE_openclaw-agentic-landscape_2026-07-07.md). Section citations below reference those finding IDs.
 **Status:** Baseline report. Intended to be re-run in lighter form on a recurring cadence (see "Next run" at the bottom).
 **Scope:** (1) OpenClaw architecture, business vs. personal use, May-July 2026 releases, security posture. (2) Consensus business agent architectures as of mid-2026. (3) What this means for ProcessSmith's own systems (Jimmy, Max, client offers).
 
@@ -18,7 +19,7 @@ OpenClaw is one self-hosted program, the **Gateway**, run on your own machine or
 - **Skills** are add-on instruction packs. **Sandboxing** (Docker or a VM) is optional but strongly recommended.
 - **Multi-agent:** one Gateway can host several agents with isolated workspaces, state directories, and session stores, routed by deterministic bindings (chat X goes to agent A, channel Y to agent B). Caveat: direct chats collapse to the agent's main session key by default, so true per-sender isolation needs explicit configuration.
 
-Sources: docs.openclaw.ai (home + multi-agent concept page). Verified 3-0.
+Sources: https://docs.openclaw.ai/ and https://docs.openclaw.ai/concepts/multi-agent (accessed 2026-07-07). Verified 3-0 (evidence F1).
 
 ### 1.2 Personal vs. business use
 
@@ -48,14 +49,14 @@ Near-weekly cadence; three releases in the first week of July alone.
 
 Beta-only as of 2026-07-07: ClawRouter, capability profiles, Telegram Codex features. Stable deployments (2026.6.11) do not have them.
 
-Sources: docs.openclaw.ai release notes, github.com/openclaw/openclaw/releases. Verified 3-0.
+Sources: https://docs.openclaw.ai/releases/2026.6.11 and https://github.com/openclaw/openclaw/releases (accessed 2026-07-07); ClawRouter: https://github.com/openclaw/clawrouter. Verified 3-0 (evidence F2-F6).
 
 ### 1.4 Security posture
 
-1. **ClawJacked (CVE-2026-32025, CVSS 8.8, patched Feb 2026 in v2026.2.25).** Any malicious website could hijack a locally running agent with zero clicks: the gateway relaxed security for localhost, exempted loopback from rate limiting (brute-force at hundreds of guesses/second, unlogged), and auto-approved device pairing from localhost, yielding shell execution. Patched within 24 hours of Oasis Security's disclosure. Pre-window, but it defines the threat model current hardening responds to. (Oasis primary disclosure; Dark Reading, The Hacker News, SC Media corroboration. Verified 3-0.)
-2. **ClawHub malicious skills.** Koi Security found 824+ malicious skills of ~10,700 by mid-February (up from 341 weeks earlier); Trend Micro documented 39 skills across ClawHub and SkillsMP distributing the Atomic macOS info stealer; Antiy Labs later counted 1,184 historically. Operational rule: treat third-party skills as untrusted code; install only vetted, pinned skills. (Verified 3-0.)
-3. **CVE volume.** ~543 CVEs tracked as of 2026-07-07; 75 published in May, 61 in June (down from peaks of 198 in March, 174 in April). ~92% (500/543) were assigned by third-party researchers via VulnCheck as CNA, not project-confirmed, so raw counts reflect an external research wave more than confirmed severity. Trend solid; exact numbers medium confidence. (jgamblin/OpenClawCVEs tracker + independent snapshots.)
-4. **Consensus posture** (Microsoft Security Blog, Backslash Security, OpenClaw's own security docs): built-in safeguards (auth, connection limits, tool controls, optional sandboxing) do not eliminate risk because the agent runs with broad access to files, credentials, and connected systems. Assume compromise is possible; limit blast radius: container/VM isolation, scoped credentials, loopback-only binding with token auth, rate limiting, minimum tool surface per agent. (Verified 3-0.)
+1. **ClawJacked (CVE-2026-32025, CVSS 8.8, patched Feb 2026 in v2026.2.25).** Any malicious website could hijack a locally running agent with zero clicks: the gateway relaxed security for localhost, exempted loopback from rate limiting (brute-force at hundreds of guesses/second, unlogged), and auto-approved device pairing from localhost, yielding shell execution. Patched within 24 hours of Oasis Security's disclosure. Pre-window, but it defines the threat model current hardening responds to. (Primary: https://oasis.security/blog/openclaw-vulnerability; corroboration: Dark Reading, The Hacker News, SC Media. Verified 3-0, evidence F7.)
+2. **ClawHub malicious skills.** Koi Security found 824+ malicious skills of ~10,700 by mid-February (up from 341 weeks earlier); Trend Micro documented 39 skills across ClawHub and SkillsMP distributing the Atomic macOS info stealer; Antiy Labs later counted 1,184 historically. Operational rule: treat third-party skills as untrusted code; install only vetted, pinned skills. (Koi Security ClawHavoc audit + Trend Micro AMOS report via https://www.darkreading.com/application-security/critical-openclaw-vulnerability-ai-agent-risks. Verified 3-0, evidence F8.)
+3. **CVE volume.** ~543 CVEs tracked as of 2026-07-07; 75 published in May, 61 in June (down from peaks of 198 in March, 174 in April). ~92% (500/543) were assigned by third-party researchers via VulnCheck as CNA, not project-confirmed, so raw counts reflect an external research wave more than confirmed severity. Trend solid; exact numbers medium confidence, and a finer severity breakdown from the same source family was refuted in verification. (https://github.com/jgamblin/OpenClawCVEs/, accessed 2026-07-07, + independent snapshots. Evidence F9, killed claim K3.)
+4. **Consensus posture** (Microsoft Security Blog, Backslash Security, OpenClaw's own security docs): built-in safeguards (auth, connection limits, tool controls, optional sandboxing) do not eliminate risk because the agent runs with broad access to files, credentials, and connected systems. Assume compromise is possible; limit blast radius: container/VM isolation, scoped credentials, loopback-only binding with token auth, rate limiting, minimum tool surface per agent. (Microsoft Security Blog, Backslash Security, https://docs.openclaw.ai/gateway/security. Verified 3-0, evidence F10.)
 
 ---
 
@@ -75,7 +76,7 @@ When multi-agent is justified, the named production patterns:
 
 Caveat: both docs target enterprises; applying them to small business is inference, but a safe one since SMB workloads sit at the simple end of the complexity spectrum.
 
-Sources: docs.cloud.google.com "Choose a design pattern for your agentic AI system" (reviewed 2026-05-28), learn.microsoft.com "AI agent design patterns" (updated 2026-05-12). Verified 3-0.
+Sources: https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system (last reviewed 2026-05-28) and https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns (updated 2026-05-12), both accessed 2026-07-07. Verified 3-0 (evidence F11-F14).
 
 ### The ProcessSmith client ladder
 
@@ -131,6 +132,14 @@ Output: an `UPDATE_<date>.md` in this folder diffing against this baseline, plus
 
 ## Sources
 
-Primary: docs.openclaw.ai (home, multi-agent, security, Slack channel, release notes), github.com/openclaw/openclaw/releases, github.com/openclaw/clawrouter, oasis.security disclosure blog, github.com/jgamblin/OpenClawCVEs, docs.cloud.google.com agentic design patterns, learn.microsoft.com AI agent design patterns.
-Secondary: Dark Reading, The Hacker News, SC Media, SecurityWeek, Trend Micro and Koi Security research coverage, releasebot.io.
-Method note: 4 claims were killed in adversarial verification (including a severity-breakdown claim from the CVE tracker family); numbers above survived 3-0 votes unless marked medium confidence.
+Full source register with quality ratings, search angles, and access dates: [EVIDENCE_openclaw-agentic-landscape_2026-07-07.md](EVIDENCE_openclaw-agentic-landscape_2026-07-07.md), section 3. All sources accessed 2026-07-06/07.
+
+Primary: https://docs.openclaw.ai/ (home, concepts/multi-agent, gateway/security, channels/slack, releases/2026.6.11), https://github.com/openclaw/openclaw/releases, https://github.com/openclaw/clawrouter, https://oasis.security/blog/openclaw-vulnerability, https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system, https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns.
+Secondary: https://www.darkreading.com/application-security/critical-openclaw-vulnerability-ai-agent-risks (fetch 403'd; verified via excerpts + the primary researchers Oasis/Koi/Trend Micro), https://github.com/jgamblin/OpenClawCVEs/, https://releasebot.io/updates/openclaw, plus corroborating coverage listed in the evidence file.
+
+## Caveats & limits
+
+- Beta features (ClawRouter, capability profiles, Telegram Codex pairing) are not in any stable release as of 2026-07-07; capability profiles are scaffolding, not enforced boundaries (a stronger claim was killed in verification, K4).
+- Precise OpenClaw counts (CVEs, channels, malicious skills) are dated snapshots; two count claims were killed (K1, K3).
+- The small-business conclusion is inference from enterprise-oriented vendor guidance.
+- No claims ranking named commercial platforms (n8n, Zapier, CrewAI, LangGraph, etc.) survived verification, so this report is strong on architecture patterns and deliberately silent on product comparisons. Flagged as the top open question for the next run.
