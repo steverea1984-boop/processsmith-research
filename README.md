@@ -4,6 +4,7 @@ Research reports and analysis produced for ProcessSmith — AI agents, business 
 
 ## Reports
 
+- [OpenClaw & Business Agentic Architectures: State of Play](openclaw-agentic-landscape/REPORT_openclaw-agentic-landscape_2026-07-07.md) — Adversarially verified baseline (July 2026) on OpenClaw architecture, business vs. personal deployments, May–July releases, security posture (ClawJacked, ClawHub malware, CVE wave), plus the Google/Microsoft consensus on business agent architectures and actions for Jimmy/Max. Designed for recurring monthly updates.
 - [AI Security & Governance for a Solo Canadian Consultancy](ai-security-governance/REPORT_ai-security-governance_2026-07-03.md) — Adversarially verified research on what binds ProcessSmith (PIPEDA/BC PIPA + OPC generative-AI principles, incl. prompt injection as a privacy duty), what doesn't (EU AI Act; AIDA dead), recording/ADAD consent rules, and OWASP agentic controls. Evidence base for the Security Framework in processsmith-systems (PR #27).
 - [OpenClaw at Scale for Business — Damian Finol's Approach & Beyond](openclaw-scale-damian-finol/REPORT.md) — Enterprise OpenClaw deployment patterns, privilege-separated agent architecture, and ProcessSmith positioning implications.
 - [Sakana Fugu for ProcessSmith and OpenClaw](sakana-fugu/REPORT_sakana_fugu_2026-06-27.md) — Public-safe research brief on Sakana's hosted multi-agent model API, availability, Codex/API integration paths, ProcessSmith fit, and adoption cautions.
