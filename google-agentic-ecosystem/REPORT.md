@@ -1,498 +1,408 @@
-# Google Agentic Ecosystem and Agent Workspace Research
+# Google Agentic Ecosystem and "Model Eats the Harness" Research
 
 Date: 2026-07-08
 Status: PROVISIONAL
 
+## Source
+
+Primary episode:
+- Apple Podcasts: "Google DeepMind's Logan Kilpatrick: Why the Model Eats the Harness", Training Data, Sequoia Capital, published June 11, 2026.
+- Apple page: https://podcasts.apple.com/ca/podcast/google-deepminds-logan-kilpatrick-why-the-model-eats/id1750736528?i=1000772185230
+- Matching YouTube video: https://www.youtube.com/watch?v=cMAs8z2dehs
+- Local transcript from YouTube captions: `source/cMAs8z2dehs.transcript.md`
+- Caption source file: `source/cMAs8z2dehs.en.vtt`
+
+Note: This report supersedes the first provisional pass, which was based on the wrong local podcast transcript candidate.
+
 ## Executive Read
 
-The podcast is really about an emerging operating pattern: a single AI workspace that can mix local models, cloud models, personal agents, scheduled automations, web search, voice, terminal execution, memory, and business tools. Open WebUI is presented as the front-end/control surface. Hermes and OpenClaw are treated as swappable back-end agent runtimes. Local models on Apple silicon are treated as the cheap/private compute layer.
+This episode is not mainly about Google Workspace assistants. It is about Google's agent strategy from the perspective of Logan Kilpatrick, who runs Google AI Studio and the Gemini API.
 
-Google's ecosystem is converging on a managed enterprise version of the same stack:
+The central thesis is: **the model will eat the harness.** In other words, the scaffolding that developers currently build around models - tool loops, agent harnesses, search, code execution, containers, managed runtime, and workflow glue - tends to start outside the model, then move upstream into the model/provider system as capability improves.
 
-- Gemini app / Workspace Gemini: user-facing assistant inside Gmail, Docs, Drive, Meet, and related apps.
-- Gemini Enterprise app: employee-facing intranet search, AI assistant, and agentic workflow surface.
-- Gemini Enterprise Agent Platform: developer platform to build, deploy, govern, and optimize production agents.
-- Agent Development Kit (ADK): open-source framework for building agents and multi-agent systems.
-- Agent2Agent (A2A): protocol for agents to communicate and coordinate.
-- Gemini API / Vertex-style model services: model calls, function calling, Google Search grounding, URL/file/code tools, and managed deployment.
-- Gemini Code Assist / Gemini CLI: developer-facing coding agents.
-- Jules: autonomous coding-agent workflow for GitHub issues and software tasks.
-- Workspace Studio: no-code agent/workflow builder for Google Workspace.
-- Gemma / AI Edge: Google's open/open-ish and on-device model side.
-- BigQuery data agents / Firebase AI Logic: business-data and app-builder routes into Gemini.
+That does not mean application builders are dead. It means the durable value moves away from generic harness plumbing and toward:
 
-The practical ProcessSmith takeaway: Google is likely strongest when the client is already committed to Google Workspace/Cloud and needs governed enterprise AI. OpenClaw/Open WebUI-style stacks are stronger for custom operator surfaces, local/private experimentation, cross-vendor routing, and small-business workflow packaging. The best ProcessSmith path is hybrid: use Google where it provides secure identity, Workspace data, grounding, and agent hosting; use OpenClaw or a ProcessSmith control layer for client-specific operator workflows and cross-tool orchestration.
+- workflow-specific product taste
+- distribution and trust
+- domain data and evaluation
+- business process ownership
+- safe human-control surfaces
+- integration into real work
 
-## Transcript-Derived Topics and Tools
+For ProcessSmith, this is a useful warning. Do not build the company around being "the agent harness installer." Build around business workflow architecture, implementation, governance, and vertical operating systems for contractors and small businesses.
 
-### 1. Open WebUI as the Unified Agent Surface
+## Episode Topic Map
 
-Podcast role:
-- Central chat/control interface for local models, cloud models, Hermes, OpenClaw, web search, voice, calendars, automations, and terminal work.
-- The host's key idea is agent-framework agnosticism: if Hermes breaks, swap to OpenClaw or another runtime without rebuilding the user-facing workspace.
+### 1. Antigravity as Google's Agent Harness
+
+Transcript claim:
+- Google sees the "agentic Gemini era" as a new through-line across Google products.
+- Antigravity is described as more than an IDE: it includes an IDE, web-first agent experience, CLI, SDK, and managed agent path through the Gemini API.
+- The same harness is described as powering agent features across Search, the Gemini app, Cloud, and AI Studio.
 
 Research:
-- Open WebUI describes itself as one interface for AI models, with chat, models, knowledge, web search, images, voice, and extensibility.
-- Its official feature docs include calendar and automations, where scheduled prompts run through the normal chat completion pipeline.
-- Its tools/functions security warning is important: tools execute arbitrary Python on the server, so tool admin access is effectively server shell access.
+- Google's public docs currently expose adjacent pieces rather than one simple "Antigravity" product page: Gemini CLI, Gemini Code Assist, Gemini API, ADK, Agent Platform, and Gemini Enterprise.
+- Gemini CLI is documented as an open-source terminal agent using a ReAct loop with built-in tools and MCP servers.
+- ADK is Google's open-source framework for building, debugging, evaluating, and deploying agents.
 
 ProcessSmith read:
-- Open WebUI is interesting as an internal operator console or prototype surface.
-- It is not automatically a client-safe business platform. Tool governance, tenancy, audit, and permission boundaries need to be designed deliberately.
+- Treat "Antigravity" as Google's internal/shared agent-harness direction, not yet as a clean product SKU.
+- The strategic point is bigger than the name: Google wants one agent substrate to spread across coding, search, Gemini app, Cloud, and AI Studio.
+- ProcessSmith should avoid overinvesting in generic agent infrastructure that a provider may absorb.
 
 Sources:
-- https://docs.openwebui.com/features/
-- https://docs.openwebui.com/features/calendar/
-- https://docs.openwebui.com/features/chat-conversations/chat-features/automations/
-- https://docs.openwebui.com/features/extensibility/plugin/tools/
-
-Confidence: High for product capabilities from official docs; Medium for production fit because client safety depends on deployment choices.
-
-### 2. Local Models and Apple MLX
-
-Podcast role:
-- Local Qwen, GPT-OSS, and DeepSeek-style models are run on a Mac Studio using Apple MLX/OMLX.
-- The value proposition is local/private inference, lower marginal cost, offline capability, and reduced dependence on cloud APIs.
-
-Research:
-- Apple describes MLX as an array framework for efficient and flexible machine learning research on Apple silicon.
-- Apple notes MLX is optimized for unified memory and supports ML research and inference workflows on Apple platforms.
-- OpenAI's gpt-oss announcement says gpt-oss-120b can run efficiently on a single 80 GB GPU and gpt-oss-20b can run on edge devices with 16 GB memory.
-
-ProcessSmith read:
-- Local models are useful for low-risk summarization, classification, drafting, local knowledge search, and experimentation.
-- They are weaker as the default for client operations that need strong auditability, uptime, managed security, and current tool integrations.
-- Local inference is not free; the cost shifts to hardware, operations, model management, evaluation, and failure recovery.
-
-Sources:
-- https://opensource.apple.com/projects/mlx
-- https://machinelearning.apple.com/research/exploring-llms-mlx-m5
-- https://openai.com/index/introducing-gpt-oss/
-
-Confidence: High for MLX and gpt-oss capability claims from primary sources; Medium for model-performance generalization because local quality depends heavily on model, quantization, hardware, and task.
-
-### 3. Web Search, Grounding, and Fresh Research
-
-Podcast role:
-- Open WebUI web search is wired to providers such as DuckDuckGo, Brave, Bing, Google personal search, and Perplexity.
-- The host demonstrates a local model searching the web, then handing the finding to a personal health agent memory.
-
-Research:
-- Gemini API supports Grounding with Google Search to connect model responses to real-time public web content and return verifiable sources.
-- Gemini Enterprise Agent Platform also documents grounding with Google Search and grounding with custom search APIs.
-- This is directly relevant to business agents because stale knowledge is a major failure mode.
-
-ProcessSmith read:
-- For client systems, search should be treated as a governed capability, not just a model toggle.
-- Good pattern: search tool -> source fetch -> citation/evidence normalization -> approval or memory update.
-- Bad pattern: automatically writing new web findings into durable agent memory without verification.
-
-Sources:
-- https://ai.google.dev/gemini-api/docs/google-search
-- https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/grounding-with-google-search
-- https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/grounding-with-your-search-api
-
-Confidence: High for Google grounding capabilities; High for ProcessSmith caution based on current research-deliverable and memory-governance standards.
-
-### 4. Scheduling, Automations, and Business Routines
-
-Podcast role:
-- Open WebUI automations are framed as an alternative to flaky scheduled jobs in agent frameworks.
-- Example uses include daily health-study scans, trend monitoring, and business research automation.
-
-Research:
-- Open WebUI automations run prompts automatically at recurring times, creating chats through the normal completion pipeline.
-- Google Workspace Studio is positioned as a no-code way to create, manage, and share AI agents to automate work in Workspace.
-- Google's Workspace Studio page says users can describe an automation and Gemini creates a flow.
-
-ProcessSmith read:
-- This is a major small-business wedge: recurring monitoring, lead triage, inbox/document routing, project status generation, and approval queues.
-- The risk is silent automation drift. Every scheduled agent should have logs, ownership, retry rules, and a human-visible output.
-
-Sources:
-- https://docs.openwebui.com/features/chat-conversations/chat-features/automations/
-- https://workspaceupdates.googleblog.com/2025/12/workspace-studio.html
-- https://workspace.google.com/studio/
-
-Confidence: High for feature existence; Medium for Workspace Studio availability because Google rollout/tenant access can vary.
-
-### 5. Voice, Mobile, and PWA Access
-
-Podcast role:
-- Open WebUI is used from an iPhone as a PWA.
-- The host tests dictation, voice mode, ElevenLabs TTS, and the idea of a conversational agent interface.
-
-Research:
-- Open WebUI feature docs include voice as part of the interface.
-- Google Workspace with Gemini includes AI assistance across Workspace apps; Gemini's consumer and business assistant surfaces continue to push multimodal/voice experiences.
-
-ProcessSmith read:
-- Voice is best as an input/status layer, not the whole business UI.
-- Client work still needs visual approval cards, audit trails, source links, and structured state.
-
-Sources:
-- https://docs.openwebui.com/features/
-- https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/google-workspace-with-gemini
-
-Confidence: Medium; exact voice behavior depends on browser, HTTPS, device permissions, and TTS/STT provider configuration.
-
-### 6. Browser/Terminal/IDE Capabilities
-
-Podcast role:
-- Open Terminal is used inside Open WebUI as a lightweight IDE/terminal environment.
-- Claude Code is used to install and configure Open WebUI, set up web search, add models, and troubleshoot voice.
-- The host wants a system where local/cloud agents can control tools while the user supervises from one interface.
-
-Research:
-- Gemini CLI is Google's open-source terminal agent. Google says it uses a ReAct loop with built-in tools and MCP servers for tasks such as fixing bugs, creating features, and improving tests.
-- Gemini Code Assist provides IDE and terminal assistance for software development.
-
-ProcessSmith read:
-- Terminal agents are powerful but high-risk in business environments.
-- They should sit behind scoped workspaces, branch/PR workflows, test gates, and approval controls.
-- For ProcessSmith clients, "agent can run commands" is not a selling point by itself; "agent can safely complete a bounded workflow with evidence" is.
-
-Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
 - https://developers.google.com/gemini-code-assist/docs/gemini-cli
-- https://developers.google.com/gemini-code-assist/docs/overview
-- https://docs.openwebui.com/features/extensibility/plugin/tools/
-
-Confidence: High for Google and Open WebUI capabilities; High for risk assessment.
-
-## Google's Agentic Ecosystem, Separately
-
-### Layer 1: Personal and Workspace Assistant
-
-What it is:
-- Gemini inside Google Workspace: drafting, summarizing, meeting help, Docs/Drive/Gmail assistance.
-- Good for individual productivity and low-friction adoption.
-
-Where it fits:
-- Best for companies already in Google Workspace.
-- Helps employees work faster inside existing documents, email, and meetings.
-
-Limit:
-- It is not the whole agent platform. It is a productivity assistant layer, not a full custom workflow runtime by itself.
-
-Sources:
-- https://workspace.google.com/solutions/ai/
-- https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/google-workspace-with-gemini
-
-Confidence: High.
-
-### Layer 2: Gemini Enterprise App
-
-What it is:
-- Google describes Gemini Enterprise as an intranet search, AI assistant, and agentic platform using data across the organization.
-- It includes connectors for common enterprise systems and permissions-aware access to enterprise information.
-
-Where it fits:
-- Internal knowledge assistant.
-- Employee-facing enterprise search.
-- Shared business-agent launcher for governed workflows.
-
-Limit:
-- It is a Google-managed surface. Custom workflow UX and non-Google client-specific operator surfaces may still require separate app/control-plane work.
-
-Sources:
-- https://docs.cloud.google.com/gemini/enterprise/docs
-- https://cloud.google.com/gemini-enterprise
-
-Confidence: High.
-
-### Layer 3: Gemini Enterprise Agent Platform
-
-What it is:
-- Google's developer platform to build, scale, govern, and optimize enterprise agents.
-- It is now positioned as the successor/evolution of Vertex AI agent capabilities.
-- Google says the platform brings model selection, model building, agent building, integration, DevOps, orchestration, and security into one platform.
-
-Where it fits:
-- Production enterprise agents.
-- Secure agent runtime and governance.
-- Cloud-native integration with Google Cloud security, identity, observability, and data.
-
-Limit:
-- It can be heavier than a small-business MVP.
-- It may pull ProcessSmith toward Google Cloud architecture before the client need justifies it.
-
-Sources:
-- https://docs.cloud.google.com/gemini-enterprise-agent-platform
-- https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
-- https://cloud.google.com/products/gemini-enterprise-agent-platform
-
-Confidence: High for platform direction; Medium for exact product boundaries because naming changed from Vertex AI/Agent Builder/Agentspace-era terminology.
-
-### Layer 4: ADK, A2A, MCP, and Agent Protocols
-
-What it is:
-- ADK is Google's open-source agent development framework for building, debugging, and deploying reliable agents.
-- A2A is Google's agent-to-agent protocol for communication, secure information exchange, and coordination across enterprise systems.
-- Google's Workspace codelab shows Gemini Enterprise agents using ADK, Agent Runtime, Workspace data stores, Google Search, a Google-managed MCP server, custom tools, and Gemini Enterprise Web app.
-
-Where it fits:
-- ADK: build agents.
-- A2A: connect agents.
-- MCP: connect agents to tools/data.
-- Gemini Enterprise app: user-facing employee surface.
-- Agent Runtime: host execution.
-
-Limit:
-- Protocols reduce integration friction but do not remove architecture work. Identity, permissions, audit, evals, and human approval remain product requirements.
-
-Sources:
 - https://adk.dev/
 - https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk
-- https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
-- https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/
-- https://codelabs.developers.google.com/ge-gws-agents
+- https://ai.google.dev/gemini-api/docs/function-calling
 
-Confidence: High.
+Confidence: Medium-High. The transcript is explicit on the strategic claim; public product naming is still fragmented.
 
-### Layer 5: Gemini API, Tools, and Grounding
+### 2. The Model Eats the Harness
 
-What it is:
-- Gemini API gives developers model access, function calling, Google Search grounding, file/search/code tools, URL context, and other built-in tool capabilities.
-- Function calling lets Gemini decide when to call external tools/APIs and return structured parameters.
+Transcript claim:
+- Kilpatrick argues that what people call "the model" is no longer just weights.
+- Model products now include hosted tools, search, code execution, containers, tool calling, and agent harness behavior.
+- Scaffolding often leads the model by a few steps, then gets absorbed into the native model/provider system.
+- The current agent harness may stop being the alpha within roughly 12 months.
 
-Where it fits:
-- Custom ProcessSmith apps.
-- Client-specific workflows.
-- Smaller integrations where a full enterprise agent platform is too much.
+Research:
+- Gemini API already includes function calling and Google Search grounding.
+- Google's Agent Platform and ADK provide agent construction, runtime, and deployment pieces.
+- OpenAI and Anthropic show the same broad industry direction: models ship with more built-in tools, code execution, browsing/search, computer use, and agent runtimes.
 
-Limit:
-- API access gives capability, not governance. ProcessSmith still needs its own tool wrappers, approvals, logging, and client tenant boundaries.
+ProcessSmith read:
+- Generic harness work is a wasting asset unless it creates learning, distribution, or a reusable client-control layer.
+- Durable ProcessSmith value is not "we know how to wire tools to an LLM." It is "we know which work should be automated, which should be approved, how to prove what happened, and how to make it fit the business."
+- Keep ProcessSmith architecture provider-portable, but do not rebuild provider features for ideology.
 
 Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
 - https://ai.google.dev/gemini-api/docs/function-calling
 - https://ai.google.dev/gemini-api/docs/google-search
-- https://ai.google.dev/gemini-api/docs/gemini-3
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform
 
-Confidence: High.
+Confidence: High for the conceptual trend; Medium for the 12-month timing.
 
-### Layer 6: Developer Agents
+### 3. Agentic AI May Increase Usage, Not Just Cannibalize It
 
-What it is:
-- Gemini CLI and Gemini Code Assist are Google's coding-agent layer.
-- They compete conceptually with Claude Code, Codex, and other terminal/IDE agent tools.
-- Jules is Google's asynchronous coding agent for GitHub-connected software tasks.
+Transcript claim:
+- The host asks whether agents reduce human time in products such as Gmail/Search.
+- Kilpatrick argues Google has seen AI be positive-sum for Search: people search more, while agents also search more.
+- He says Google's goal should be maximizing outcomes for users, not maximizing eyeball time.
 
-Where it fits:
-- Internal ProcessSmith development support.
-- Google Cloud app and infrastructure work.
-- A possible client-facing coding workflow only if the safety envelope is very tight.
+Research:
+- Google has publicly positioned Gemini and AI Mode as ways to help users ask more complex questions and take action, not just as a replacement for classic search.
+- Gemini Enterprise similarly positions agents as ways to find information and complete work across business systems.
 
-Limit:
-- As with any coding agent, it needs repo boundaries, review, tests, and rollback.
+ProcessSmith read:
+- The right business metric is not "chat volume" or "agent turns." It is completed useful work with evidence.
+- For clients, sell outcome loops: fewer missed follow-ups, faster RFIs, cleaner handoffs, faster estimates, better document retrieval, fewer status meetings.
 
 Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
+- https://cloud.google.com/gemini-enterprise
+- https://workspace.google.com/solutions/ai/
+
+Confidence: Medium. Google's claim is plausible and internally consistent, but exact usage metrics were not provided in the episode.
+
+### 4. Coding Agents Are the First Working Agent Category
+
+Transcript claim:
+- Enterprises often say coding agents are the only agents they have really seen work.
+- Kilpatrick partially agrees, depending on the definition of "work."
+- He expects non-coding enterprise use cases to improve quickly.
+- Long-horizon agents matter, and coding agents are especially important because better coding accelerates every other part of the business.
+
+Research:
+- Gemini CLI, Gemini Code Assist, Jules, Codex, Claude Code, Cursor, and similar tools show the coding-agent category is already operational.
+- Coding works early because it has strong feedback loops: tests, compilers, diffs, logs, type checks, review, and deploy gates.
+
+ProcessSmith read:
+- Construction/business workflows need the same structure coding has: testable artifacts, acceptance criteria, logs, review gates, and rollback.
+- The more a workflow can be made "code-like" - structured inputs, explicit outputs, checks, and approvals - the more agentic execution becomes practical.
+
+Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
 - https://developers.google.com/gemini-code-assist/docs/gemini-cli
 - https://developers.google.com/gemini-code-assist/docs/overview
 - https://jules.google/
 
 Confidence: High.
 
-### Layer 7: App, Data, and Edge Agents
+### 5. Dogfooding and Feedback Flywheels
 
-What it is:
-- Firebase AI Logic brings Gemini API access into web/mobile apps through Firebase's app-development stack.
-- BigQuery data agents and data canvas bring natural-language and agentic workflows into business data analysis.
-- Gemma and Google AI Edge are the local/on-device side of Google's model ecosystem.
+Transcript claim:
+- Kilpatrick says it is healthy for DeepMind/Google teams to use competing models to understand the ecosystem.
+- He also says Gemini must be used internally because the feedback flywheel from 100k+ Google engineers should be a competitive advantage.
+- He cites internal product teams using Antigravity to build mobile/Mac apps faster than normal.
 
-Where it fits:
-- Firebase AI Logic: client-facing apps that need Gemini features without standing up a full enterprise agent platform.
-- BigQuery agents: analytics, reporting, BI, data investigation, and business intelligence workflows.
-- Gemma / AI Edge: constrained local or edge workloads where cloud calls are not ideal.
+Research:
+- This maps to a broader platform pattern: the organizations with the most real internal usage get the best eval traces, bug reports, and product feedback.
 
-Limit:
-- These are separate product lanes. They do not automatically become one unified operator surface unless ProcessSmith designs that layer.
-- BigQuery/data agents matter most for clients with structured data already in Google Cloud.
-- Edge/local Google models may help with cost/privacy, but the business safety pattern still needs wrappers, approvals, and audit.
+ProcessSmith read:
+- ProcessSmith should dogfood its own operator system on real internal work before packaging it for clients.
+- Every pilot should generate reusable traces: prompt, tools used, human edits, approvals, rejected actions, artifact diffs, and failure modes.
 
 Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
+
+Confidence: Medium-High. The dogfooding claim is direct from the episode; exact internal metrics are not independently verified.
+
+### 6. Narrow and Jagged Superintelligence
+
+Transcript claim:
+- Coding may already feel like narrow superintelligence.
+- Kilpatrick expects "jagged" vertical superintelligence before broad AGI.
+- He names verifiable domains such as math, finance, and science as likely early winners.
+
+Research:
+- This aligns with the pattern that AI improves fastest where outputs can be checked: code tests, math proofs, scientific simulations, financial calculations, structured data validation.
+
+ProcessSmith read:
+- Pick early service lines where agent output is verifiable.
+- Avoid fully autonomous judgment-heavy workflows early.
+- Good ProcessSmith candidates: document retrieval with source links, meeting/action extraction, RFI/submittal draft generation, estimate checklist QA, recurring status summaries, file/package validation.
+
+Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
+
+Confidence: Medium. The direction is credible; "superintelligence" framing is more opinion than measurable product claim.
+
+### 7. World Models, Omni, and Generative Media
+
+Transcript claim:
+- Kilpatrick describes Omni as a single model for text, audio, music, image, and video-style outputs, rather than routing across many separate models.
+- He frames Omni as world-model-like because it has richer world understanding, though not necessarily a traditional real-time action-conditioned video model.
+- He says video/game generation still needs scaffolding: game engines, sprite generation, orchestration, reliability, and product taste.
+
+Research:
+- Google has separate public products for Gemini, Veo, Imagen, Lyria, Gemma, and other media/model capabilities, while the episode describes an internal direction toward a true omni model.
+- The game-making discussion reinforces the "harness/scaffolding" thesis: even strong generative models need product systems around them.
+
+ProcessSmith read:
+- For ProcessSmith, media generation is secondary. The useful lesson is that powerful models still need business scaffolding.
+- In business workflows, "world model" value may show up as richer document/site/video understanding, not just flashy content generation.
+
+Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
+- https://ai.google.dev/gemini-api/docs/models
+- https://ai.google.dev/gemma/docs
+
+Confidence: Medium. The transcript is clear, but public Omni details may lag or differ from internal framing.
+
+### 8. AI Studio and Personal Software
+
+Transcript claim:
+- The episode discusses AI Studio as a builder surface and references large numbers of Android apps/prototypes created through AI Studio.
+- The broader implication is that personal software creation is becoming accessible: users can make one-off apps, games, tools, and automations.
+
+Research:
+- Google AI Studio and Gemini API are positioned as builder tools for developers and technically curious users.
+- Firebase AI Logic extends Gemini into web/mobile apps.
+
+ProcessSmith read:
+- The market will not pay much for "we can make small apps with AI" by itself.
+- Clients will pay for useful software connected to their work, data, approvals, and operating rhythm.
+- ProcessSmith should package "personal software for businesses": small internal tools that solve annoying workflow gaps.
+
+Sources:
+- Transcript: `source/cMAs8z2dehs.transcript.md`
+- https://ai.google.dev/
 - https://firebase.google.com/products/firebase-ai-logic
+
+Confidence: Medium.
+
+## Google's Ecosystem, Separately
+
+### Gemini App / Workspace Gemini
+
+Role:
+- User-facing assistant across Gmail, Docs, Sheets, Meet, Drive, and Gemini surfaces.
+
+ProcessSmith fit:
+- Good for Google Workspace clients that need everyday productivity assistance.
+- Not enough by itself for custom workflow automation or client-specific operating surfaces.
+
+Sources:
+- https://workspace.google.com/solutions/ai/
+- https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/google-workspace-with-gemini
+
+### Gemini Enterprise
+
+Role:
+- Employee-facing enterprise search, assistant, and agentic platform across company knowledge and connected systems.
+
+ProcessSmith fit:
+- Strong for larger clients already bought into Google Cloud/Workspace.
+- Likely overkill for early SMB contractor pilots unless the client is already Google-heavy.
+
+Sources:
+- https://cloud.google.com/gemini-enterprise
+- https://docs.cloud.google.com/gemini/enterprise/docs
+
+### Gemini Enterprise Agent Platform / Vertex AI Successor Lane
+
+Role:
+- Build, deploy, scale, govern, and optimize production agents.
+
+ProcessSmith fit:
+- Use for serious production agent hosting where Google Cloud governance and runtime are worth the weight.
+- Do not start here for every small-client pilot.
+
+Sources:
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform
+- https://cloud.google.com/products/gemini-enterprise-agent-platform
+- https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
+
+### ADK and A2A
+
+Role:
+- ADK: agent development framework.
+- A2A: agent-to-agent interoperability protocol.
+- MCP: tool/data/app integration layer.
+
+ProcessSmith fit:
+- ADK is worth watching or piloting for Google-native builds.
+- A2A matters strategically if ProcessSmith coordinates multiple agents across providers.
+- MCP remains the most immediate tool-connection standard.
+
+Sources:
+- https://adk.dev/
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk
+- https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
+- https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/
+
+### Gemini API / AI Studio
+
+Role:
+- Model and builder layer: function calling, search grounding, file/search/code tools, Live API, app prototyping.
+
+ProcessSmith fit:
+- Best near-term Google path for custom ProcessSmith prototypes.
+- Pair with ProcessSmith-owned workflow controls rather than relying on raw model behavior.
+
+Sources:
+- https://ai.google.dev/
+- https://ai.google.dev/gemini-api/docs/function-calling
+- https://ai.google.dev/gemini-api/docs/google-search
+- https://ai.google.dev/gemini-api/docs/live-api
+
+### Gemini CLI, Code Assist, and Jules
+
+Role:
+- Developer-agent layer for terminal, IDE, and async coding workflows.
+
+ProcessSmith fit:
+- Useful internally for implementation and prototyping.
+- Client-facing use should remain behind repo, test, review, and deployment gates.
+
+Sources:
+- https://developers.google.com/gemini-code-assist/docs/gemini-cli
+- https://developers.google.com/gemini-code-assist/docs/overview
+- https://jules.google/
+
+### Firebase AI Logic
+
+Role:
+- Gemini features embedded into web/mobile apps through Firebase.
+
+ProcessSmith fit:
+- Good for lightweight client apps and mobile/web prototypes.
+- Less relevant for back-office agents unless the front-end app is the product.
+
+Source:
+- https://firebase.google.com/products/firebase-ai-logic
+
+### BigQuery Data Agents / Data Canvas
+
+Role:
+- Natural-language and agentic analysis over structured business data.
+
+ProcessSmith fit:
+- Strong for analytics-heavy clients.
+- Most contractors will need data cleanup and schema discipline before this pays off.
+
+Sources:
 - https://docs.cloud.google.com/bigquery/docs/data-canvas
 - https://docs.cloud.google.com/bigquery/docs/create-data-agents
+
+### Gemma / AI Edge
+
+Role:
+- Google's local/on-device/open-model lane.
+
+ProcessSmith fit:
+- Useful for privacy-sensitive, edge, or cost-constrained workflows.
+- Not a replacement for governance.
+
+Sources:
 - https://ai.google.dev/gemma/docs
 - https://developers.google.com/edge
 
-Confidence: High for feature existence; Medium for ProcessSmith fit because it depends on client data maturity and Google Cloud adoption.
+## Architecture Recommendation for ProcessSmith
 
-### Layer 8: Security and Marketplace Governance
+### Best Mental Model
 
-What it is:
-- Google publishes prompt-injection mitigation guidance, including treating model input as untrusted and isolating tools/data according to risk.
-- Google Cloud Marketplace has an AI agents partner path, which matters if ProcessSmith ever packages repeatable agents for broader distribution.
+Use Google as a managed substrate when it fits. Use ProcessSmith as the business workflow layer. Use OpenClaw/Open WebUI/local stacks as internal prototyping and flexible orchestration tools.
 
-Where it fits:
-- Security guidance should inform every ProcessSmith agent design, even outside Google.
-- Marketplace/partner paths are a later-stage distribution option, not a near-term MVP requirement.
+### What Not To Build
 
-Limit:
-- Vendor guidance does not replace a concrete client control plane. ProcessSmith still needs policy, logs, human approval, credential boundaries, tenant separation, and recovery.
+- Do not build a generic "agent harness" as the product.
+- Do not compete with Google/OpenAI/Anthropic on raw model tooling.
+- Do not sell agent autonomy without evidence, approvals, and clear authority boundaries.
 
-Sources:
-- https://blog.google/security/mitigating-prompt-injection-attacks/
-- https://docs.cloud.google.com/marketplace/docs/partners/ai-agents
+### What To Build
 
-Confidence: High.
+1. Workflow-specific operator surfaces.
+2. Client-safe approval and audit systems.
+3. Source-grounded research/document workflows.
+4. Vertical playbooks for contractors and SMBs.
+5. Provider-portable tool wrappers and action policies.
+6. Internal eval traces from every ProcessSmith workflow.
 
-## Open WebUI/OpenClaw Pattern vs Google Pattern
+### Strong First Pilots
 
-### Open WebUI/OpenClaw-style stack
-
-Strong when:
-- You want local/private models.
-- You need cross-vendor flexibility.
-- You want custom operator surfaces.
-- You are experimenting quickly.
-- You want to avoid being trapped in one cloud platform.
-
-Weak when:
-- You need enterprise procurement, managed IAM, audit export, uptime, and compliance evidence.
-- You are handling multiple client tenants.
-- Tool access includes sensitive writes.
-- Non-technical clients need admin/governance without tinkering.
-
-### Google stack
-
-Strong when:
-- Client already uses Google Workspace or Google Cloud.
-- Data lives in Gmail, Drive, Calendar, Docs, Meet, Chat, BigQuery, or Google Cloud.
-- Enterprise search, identity, and managed governance matter.
-- You want managed agent runtime and Google-native grounding.
-
-Weak when:
-- The workflow needs a highly custom business-specific UI.
-- The client is not on Google.
-- You need local/offline inference.
-- You want model/provider independence as a core design principle.
-
-## ProcessSmith Recommendation
-
-Do not choose between OpenClaw and Google as if one replaces the other.
-
-Use this split:
-
-1. **ProcessSmith operator layer**
-   - Owns client workflow design, approval UX, audit views, source/evidence rules, and packaged vertical playbooks.
-
-2. **OpenClaw / Open WebUI / local stack**
-   - Best for internal prototyping, operator-console experiments, cross-tool orchestration, and local/private workflows.
-
-3. **Google Workspace/Gemini Enterprise**
-   - Best for clients already using Google who need intranet search, Workspace-grounded assistants, and managed employee-facing agents.
-
-4. **Gemini API / ADK / Agent Platform**
-   - Best for production agents where Google Cloud identity, runtime, grounding, and governance justify the platform weight.
-
-5. **Firebase / BigQuery / Gemma lanes**
-   - Use Firebase AI Logic for client-facing apps, BigQuery data agents for analytics-heavy clients, and Gemma/AI Edge only where local/edge deployment has a clear business reason.
-
-6. **Strict safety layer everywhere**
-   - Tool wrappers, least privilege, no durable secrets in agent runtimes, human approvals for risky actions, audit logs, tenant boundaries, and source-grounded memory updates.
-
-## ProcessSmith MVP Ideas
-
-### 1. Google Workspace Workflow Audit
-
-Offer:
-- Map Gmail/Drive/Calendar/Docs/Sheets/Chat workflows.
-- Identify 3-5 assistant/agent candidates.
-- Score each by data sensitivity, write risk, ROI, and ease.
-
-Likely deliverable:
-- Workflow map.
-- Agent candidate cards.
-- Permission/risk checklist.
-- MVP recommendation.
-
-### 2. Workspace-Grounded Research/Operations Assistant
-
-Use:
-- Google Workspace with Gemini or Gemini Enterprise if available.
-- Gemini API grounding for custom search/source tasks.
-- ProcessSmith approval and audit pattern around outputs.
-
-Good first workflow:
-- Weekly project status from Drive docs, Gmail threads, Calendar events, and task exports.
-
-### 3. Client-Safe Operator Surface
-
-Use:
-- OpenClaw/ProcessSmith control layer for UI, approvals, artifacts, and status.
-- Google APIs or Gemini Enterprise Agent Platform for the Google-native data/action layer.
-
-Good first workflow:
-- "Draft, do not send" assistant for client updates, meeting follow-ups, project summaries, and document routing.
-
-## Open Questions
-
-- Which Google Workspace Studio/Gemini Enterprise features are enabled for Steve's business Google account today?
-- Can Gemini Enterprise Agent Platform expose enough audit detail for ProcessSmith's client reporting standard?
-- How cleanly can OpenClaw sessions/tool logs be normalized into a Google-compatible audit/event model?
-- What is cheaper for the first 3 ProcessSmith clients: Google-native agents, OpenClaw-first managed stack, or a thinner custom Gemini API integration?
-- How much local inference should ProcessSmith run for client work versus keeping local models internal-only?
+- Google Workspace workflow audit: map Drive/Gmail/Calendar/Docs pain points and identify agent candidates.
+- Contractor document assistant: source-linked answers across controlled folders.
+- Meeting/action extraction: transcript to task list, with human approval before sending.
+- RFI/submittal draft assistant: draft-only, citation-backed, no autonomous send.
+- Weekly project status generator: pulls from docs/tasks/calendar/email exports into an approval card.
 
 ## Bottom Line
 
-The podcast points toward a practical future: one agent workspace where models and frameworks are swappable, tools are pluggable, and recurring work runs in the background. Google is building the managed enterprise version of that future, especially for Workspace and Google Cloud customers.
-
-ProcessSmith should not sell "we install Open WebUI" or "we use Gemini" as the product. The product should be safer business workflows: grounded research, visible state, approvals, audit trails, and reliable handoff between humans, agents, and business systems.
+The episode makes OpenClaw-style questions sharper, not weaker. If provider models are going to absorb more harness behavior, ProcessSmith should not differentiate on generic orchestration plumbing. It should differentiate on knowing which business workflows matter, making agent work visible and reviewable, and turning messy SMB operations into structured systems that agents can safely help with.
 
 Most useful positioning line:
 
-> Google can provide the managed agent substrate. OpenClaw can provide flexible orchestration. ProcessSmith provides the business workflow architecture that makes either one safe and useful.
+> The harness may get eaten. The workflow, trust layer, and business operating model are still ours to design.
 
 ## Source Index
 
-Transcript and local context:
-- `research/youtube/NHvcK-dnhAE.transcript.txt`
-- `external/processsmith-research/openclaw-business-architecture/REPORT.md`
-- `external/processsmith-research/agent-ui/agent-ui-podcast-research-2026-05-23.md`
+Episode:
+- https://podcasts.apple.com/ca/podcast/google-deepminds-logan-kilpatrick-why-the-model-eats/id1750736528?i=1000772185230
+- https://sequoiacap.com/podcast/google-deepminds-logan-kilpatrick-why-the-model-eats-the-harness/
+- https://www.youtube.com/watch?v=cMAs8z2dehs
+- https://spoken.md/episode/google-deepminds-logan-kilpatrick-why-the-model-eats-1000772185230
 
-Open WebUI:
-- https://docs.openwebui.com/features/
-- https://docs.openwebui.com/features/calendar/
-- https://docs.openwebui.com/features/chat-conversations/chat-features/automations/
-- https://docs.openwebui.com/features/extensibility/plugin/tools/
-- https://docs.openwebui.com/features/extensibility/pipelines/
-
-Local/model layer:
-- https://opensource.apple.com/projects/mlx
-- https://machinelearning.apple.com/research/exploring-llms-mlx-m5
-- https://openai.com/index/introducing-gpt-oss/
-
-Google Workspace and Gemini Enterprise:
-- https://workspace.google.com/solutions/ai/
-- https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/google-workspace-with-gemini
-- https://docs.cloud.google.com/gemini/enterprise/docs
-- https://cloud.google.com/gemini-enterprise
-- https://workspace.google.com/studio/
-- https://workspaceupdates.googleblog.com/2025/12/workspace-studio.html
-
-Google agent platform/developer stack:
-- https://docs.cloud.google.com/gemini-enterprise-agent-platform
-- https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
-- https://cloud.google.com/products/gemini-enterprise-agent-platform
+Google:
+- https://ai.google.dev/
+- https://ai.google.dev/gemini-api/docs/function-calling
+- https://ai.google.dev/gemini-api/docs/google-search
+- https://ai.google.dev/gemini-api/docs/live-api
 - https://adk.dev/
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform
 - https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk
-- https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
-- https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/
-- https://codelabs.developers.google.com/ge-gws-agents
+- https://cloud.google.com/gemini-enterprise
+- https://cloud.google.com/products/gemini-enterprise-agent-platform
+- https://workspace.google.com/solutions/ai/
+- https://developers.google.com/gemini-code-assist/docs/gemini-cli
+- https://developers.google.com/gemini-code-assist/docs/overview
 - https://jules.google/
 - https://firebase.google.com/products/firebase-ai-logic
 - https://docs.cloud.google.com/bigquery/docs/data-canvas
 - https://docs.cloud.google.com/bigquery/docs/create-data-agents
 - https://ai.google.dev/gemma/docs
 - https://developers.google.com/edge
-- https://blog.google/security/mitigating-prompt-injection-attacks/
-- https://docs.cloud.google.com/marketplace/docs/partners/ai-agents
 
-Gemini API and coding agents:
-- https://ai.google.dev/gemini-api/docs/function-calling
-- https://ai.google.dev/gemini-api/docs/google-search
-- https://ai.google.dev/gemini-api/docs/gemini-3
-- https://developers.google.com/gemini-code-assist/docs/gemini-cli
-- https://developers.google.com/gemini-code-assist/docs/overview
-- https://docs.cloud.google.com/cloud-assist/overview
