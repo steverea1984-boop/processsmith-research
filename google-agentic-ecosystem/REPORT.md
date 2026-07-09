@@ -16,7 +16,10 @@ Google's ecosystem is converging on a managed enterprise version of the same sta
 - Agent2Agent (A2A): protocol for agents to communicate and coordinate.
 - Gemini API / Vertex-style model services: model calls, function calling, Google Search grounding, URL/file/code tools, and managed deployment.
 - Gemini Code Assist / Gemini CLI: developer-facing coding agents.
+- Jules: autonomous coding-agent workflow for GitHub issues and software tasks.
 - Workspace Studio: no-code agent/workflow builder for Google Workspace.
+- Gemma / AI Edge: Google's open/open-ish and on-device model side.
+- BigQuery data agents / Firebase AI Logic: business-data and app-builder routes into Gemini.
 
 The practical ProcessSmith takeaway: Google is likely strongest when the client is already committed to Google Workspace/Cloud and needs governed enterprise AI. OpenClaw/Open WebUI-style stacks are stronger for custom operator surfaces, local/private experimentation, cross-vendor routing, and small-business workflow packaging. The best ProcessSmith path is hybrid: use Google where it provides secure identity, Workspace data, grounding, and agent hosting; use OpenClaw or a ProcessSmith control layer for client-specific operator workflows and cross-tool orchestration.
 
@@ -272,6 +275,7 @@ Confidence: High.
 What it is:
 - Gemini CLI and Gemini Code Assist are Google's coding-agent layer.
 - They compete conceptually with Claude Code, Codex, and other terminal/IDE agent tools.
+- Jules is Google's asynchronous coding agent for GitHub-connected software tasks.
 
 Where it fits:
 - Internal ProcessSmith development support.
@@ -284,6 +288,52 @@ Limit:
 Sources:
 - https://developers.google.com/gemini-code-assist/docs/gemini-cli
 - https://developers.google.com/gemini-code-assist/docs/overview
+- https://jules.google/
+
+Confidence: High.
+
+### Layer 7: App, Data, and Edge Agents
+
+What it is:
+- Firebase AI Logic brings Gemini API access into web/mobile apps through Firebase's app-development stack.
+- BigQuery data agents and data canvas bring natural-language and agentic workflows into business data analysis.
+- Gemma and Google AI Edge are the local/on-device side of Google's model ecosystem.
+
+Where it fits:
+- Firebase AI Logic: client-facing apps that need Gemini features without standing up a full enterprise agent platform.
+- BigQuery agents: analytics, reporting, BI, data investigation, and business intelligence workflows.
+- Gemma / AI Edge: constrained local or edge workloads where cloud calls are not ideal.
+
+Limit:
+- These are separate product lanes. They do not automatically become one unified operator surface unless ProcessSmith designs that layer.
+- BigQuery/data agents matter most for clients with structured data already in Google Cloud.
+- Edge/local Google models may help with cost/privacy, but the business safety pattern still needs wrappers, approvals, and audit.
+
+Sources:
+- https://firebase.google.com/products/firebase-ai-logic
+- https://docs.cloud.google.com/bigquery/docs/data-canvas
+- https://docs.cloud.google.com/bigquery/docs/create-data-agents
+- https://ai.google.dev/gemma/docs
+- https://developers.google.com/edge
+
+Confidence: High for feature existence; Medium for ProcessSmith fit because it depends on client data maturity and Google Cloud adoption.
+
+### Layer 8: Security and Marketplace Governance
+
+What it is:
+- Google publishes prompt-injection mitigation guidance, including treating model input as untrusted and isolating tools/data according to risk.
+- Google Cloud Marketplace has an AI agents partner path, which matters if ProcessSmith ever packages repeatable agents for broader distribution.
+
+Where it fits:
+- Security guidance should inform every ProcessSmith agent design, even outside Google.
+- Marketplace/partner paths are a later-stage distribution option, not a near-term MVP requirement.
+
+Limit:
+- Vendor guidance does not replace a concrete client control plane. ProcessSmith still needs policy, logs, human approval, credential boundaries, tenant separation, and recovery.
+
+Sources:
+- https://blog.google/security/mitigating-prompt-injection-attacks/
+- https://docs.cloud.google.com/marketplace/docs/partners/ai-agents
 
 Confidence: High.
 
@@ -336,7 +386,10 @@ Use this split:
 4. **Gemini API / ADK / Agent Platform**
    - Best for production agents where Google Cloud identity, runtime, grounding, and governance justify the platform weight.
 
-5. **Strict safety layer everywhere**
+5. **Firebase / BigQuery / Gemma lanes**
+   - Use Firebase AI Logic for client-facing apps, BigQuery data agents for analytics-heavy clients, and Gemma/AI Edge only where local/edge deployment has a clear business reason.
+
+6. **Strict safety layer everywhere**
    - Tool wrappers, least privilege, no durable secrets in agent runtimes, human approvals for risky actions, audit logs, tenant boundaries, and source-grounded memory updates.
 
 ## ProcessSmith MVP Ideas
@@ -427,6 +480,14 @@ Google agent platform/developer stack:
 - https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
 - https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/
 - https://codelabs.developers.google.com/ge-gws-agents
+- https://jules.google/
+- https://firebase.google.com/products/firebase-ai-logic
+- https://docs.cloud.google.com/bigquery/docs/data-canvas
+- https://docs.cloud.google.com/bigquery/docs/create-data-agents
+- https://ai.google.dev/gemma/docs
+- https://developers.google.com/edge
+- https://blog.google/security/mitigating-prompt-injection-attacks/
+- https://docs.cloud.google.com/marketplace/docs/partners/ai-agents
 
 Gemini API and coding agents:
 - https://ai.google.dev/gemini-api/docs/function-calling
@@ -435,4 +496,3 @@ Gemini API and coding agents:
 - https://developers.google.com/gemini-code-assist/docs/gemini-cli
 - https://developers.google.com/gemini-code-assist/docs/overview
 - https://docs.cloud.google.com/cloud-assist/overview
-
