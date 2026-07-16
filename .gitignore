@@ -1,2 +1,9 @@
+.env
+.env.*
+!.env.example
+
 # Local Sakana harness credentials.
 /sakana-fugu/eval-assets/harness/.env
+
+sakana-fugu/eval-assets/harness/__pycache__/
+sakana-fugu/eval-assets/harness/results/*.json
