@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-005",
+    "slug": "deepwiki-coding-agent-workflows",
+    "title": "DeepWiki for Coding Agent Workflows",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-07-15",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT.md",
+      "locator_type": "heading",
+      "value": "# DeepWiki for Coding Agent Workflows"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-005",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/deepwiki-coding-agent-workflows/REPORT.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# DeepWiki for Coding Agent Workflows"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-005-claim-summary",
+      "project_id": "PSR-2026-005",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# DeepWiki for Coding Agent Workflows"
+      },
+      "text": "DeepWiki can help agents navigate unfamiliar repositories, but private-repository access and evidence freshness must be verified before adoption.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

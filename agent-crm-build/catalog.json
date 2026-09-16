@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-013",
+    "slug": "agent-crm-build",
+    "title": "Internal CRM research and build handoff",
+    "status": "research-complete",
+    "catalog_state": "reviewed-standard",
+    "created": "2026-09-08",
+    "updated": "2026-09-08",
+    "source_locator": {
+      "file": "README.md",
+      "locator_type": "heading",
+      "value": "# Internal CRM research and build handoff"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-013",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/agent-crm-build/README.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Internal CRM research and build handoff"
+      }
+    },
+    {
+      "source_id": "S-TEMPLATE",
+      "project_id": "PSR-2026-013",
+      "publisher": "Internal CRM research report",
+      "url": "https://www.simpletechskills.com/",
+      "accessed": "2026-09-08",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "report.md",
+        "locator_type": "text",
+        "value": "The earlier $97 template price is a purchase price"
+      }
+    }
+  ],
+  "entities": [
+    {
+      "record_id": "PSR-2026-013-entity-simple-tech-skills-template",
+      "project_id": "PSR-2026-013",
+      "updated": "2026-09-08",
+      "source_ids": [
+        "S-TEMPLATE"
+      ],
+      "source_locator": {
+        "file": "report.md",
+        "locator_type": "text",
+        "value": "The earlier $97 template price is a purchase price"
+      },
+      "entity_id": "simple-tech-skills-crm-template",
+      "name": "Simple Tech Skills CRM template",
+      "kind": "product",
+      "canonical_url": "https://www.simpletechskills.com/"
+    }
+  ],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-013-claim-summary",
+      "project_id": "PSR-2026-013",
+      "updated": "2026-09-08",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Internal CRM research and build handoff"
+      },
+      "text": "The existing ProcessSmith OS prototype is the preferred starting point for an internal Google Workspace CRM, subject to branch and storage verification.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [
+    {
+      "record_id": "PSR-2026-013-price-template-2026-09-08",
+      "project_id": "PSR-2026-013",
+      "updated": "2026-09-08",
+      "source_ids": [
+        "S-TEMPLATE"
+      ],
+      "source_locator": {
+        "file": "report.md",
+        "locator_type": "text",
+        "value": "The earlier $97 template price is a purchase price"
+      },
+      "entity_id": "simple-tech-skills-crm-template",
+      "plan": "Advertised CRM template purchase",
+      "amount": 97,
+      "currency": "USD",
+      "unit_quantity": 1,
+      "unit": "template purchase",
+      "as_of": "2026-09-08",
+      "tax_status": "unknown"
+    }
+  ],
+  "comparisons": []
+}

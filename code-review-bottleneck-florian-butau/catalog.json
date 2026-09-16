@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-011",
+    "slug": "code-review-bottleneck-florian-butau",
+    "title": "Code Review Bottlenecks - Florian Butau",
+    "status": "source-package",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-07-24",
+    "updated": "2026-08-03",
+    "source_locator": {
+      "file": "README.md",
+      "locator_type": "heading",
+      "value": "# Code Review Bottlenecks — Florian Butau"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-011",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/code-review-bottleneck-florian-butau/README.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Code Review Bottlenecks — Florian Butau"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-011-claim-summary",
+      "project_id": "PSR-2026-011",
+      "updated": "2026-08-03",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Code Review Bottlenecks — Florian Butau"
+      },
+      "text": "This package preserves source material about code-review bottlenecks; it is not yet a fully verified ProcessSmith recommendation.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "needs-verification",
+      "confidence": "medium",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

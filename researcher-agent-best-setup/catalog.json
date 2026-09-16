@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-004",
+    "slug": "researcher-agent-best-setup",
+    "title": "Researcher Agent - Best-Practice Setup vs. Our Current Setup",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-25",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT.md",
+      "locator_type": "heading",
+      "value": "# Researcher Agent — Best-Practice Setup vs. Our Current Setup"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-004",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/researcher-agent-best-setup/REPORT.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# Researcher Agent — Best-Practice Setup vs. Our Current Setup"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-004-claim-summary",
+      "project_id": "PSR-2026-004",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# Researcher Agent — Best-Practice Setup vs. Our Current Setup"
+      },
+      "text": "A stronger researcher agent needs explicit source capture, claim verification, provenance, and quality gates rather than retrieval alone.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-006",
+    "slug": "openclaw-scale-damian-finol",
+    "title": "OpenClaw at Scale for Business",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-24",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT.md",
+      "locator_type": "heading",
+      "value": "# Research Report: OpenClaw at Scale for Business — Damian Finol's Approach & Beyond"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-006",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/openclaw-scale-damian-finol/REPORT.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# Research Report: OpenClaw at Scale for Business — Damian Finol's Approach & Beyond"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-006-claim-summary",
+      "project_id": "PSR-2026-006",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT.md",
+        "locator_type": "heading",
+        "value": "# Research Report: OpenClaw at Scale for Business — Damian Finol's Approach & Beyond"
+      },
+      "text": "Business OpenClaw deployments need privilege separation, bounded tools, observable execution, and human approval for consequential actions.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

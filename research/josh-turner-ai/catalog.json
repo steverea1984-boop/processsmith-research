@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-012",
+    "slug": "josh-turner-ai",
+    "title": "Josh Turner AI transcript collection",
+    "status": "source-collection",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-08-24",
+    "updated": "2026-09-15",
+    "source_locator": {
+      "file": "README.md",
+      "locator_type": "heading",
+      "value": "# Josh Turner AI transcript collection"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-012",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/research/josh-turner-ai/README.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Josh Turner AI transcript collection"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-012-claim-summary",
+      "project_id": "PSR-2026-012",
+      "updated": "2026-09-15",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# Josh Turner AI transcript collection"
+      },
+      "text": "The collection contains untrusted transcript-source notes and must not be treated as finished ProcessSmith guidance.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "needs-verification",
+      "confidence": "medium",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-002",
+    "slug": "processsmith-agent-platform",
+    "title": "ProcessSmith Agent Platform Research Package",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-25",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "README-processsmith-agent-platform-research.md",
+      "locator_type": "heading",
+      "value": "# ProcessSmith Agent Platform Research Package"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-002",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/processsmith-agent-platform/README-processsmith-agent-platform-research.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "README-processsmith-agent-platform-research.md",
+        "locator_type": "heading",
+        "value": "# ProcessSmith Agent Platform Research Package"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-002-claim-summary",
+      "project_id": "PSR-2026-002",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "README-processsmith-agent-platform-research.md",
+        "locator_type": "heading",
+        "value": "# ProcessSmith Agent Platform Research Package"
+      },
+      "text": "ProcessSmith should treat agent-platform choices as an architecture and operating-control decision, not a single product selection.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

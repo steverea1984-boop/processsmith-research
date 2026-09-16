@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-007",
+    "slug": "ai-security-governance",
+    "title": "AI Security and Governance for a Solo Canadian AI-Automation Consultancy",
+    "status": "complete-not-legal-advice",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-07-03",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT_ai-security-governance_2026-07-03.md",
+      "locator_type": "heading",
+      "value": "# AI Security & Governance for a Solo Canadian AI-Automation Consultancy"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-007",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/ai-security-governance/REPORT_ai-security-governance_2026-07-03.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT_ai-security-governance_2026-07-03.md",
+        "locator_type": "heading",
+        "value": "# AI Security & Governance for a Solo Canadian AI-Automation Consultancy"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-007-claim-summary",
+      "project_id": "PSR-2026-007",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT_ai-security-governance_2026-07-03.md",
+        "locator_type": "heading",
+        "value": "# AI Security & Governance for a Solo Canadian AI-Automation Consultancy"
+      },
+      "text": "ProcessSmith should treat prompt injection, data protection, approval gates, and observable agent actions as operating controls, not optional documentation.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.processsmith.dev/schemas/processsmith-research-catalog.schema.json",
+  "title": "Research catalog sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project", "citations", "entities", "relations", "mentions", "tools", "claims", "price_observations", "comparisons"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "project": { "$ref": "#/$defs/project" },
+    "citations": { "type": "array", "items": { "$ref": "#/$defs/citation" } },
+    "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+    "relations": { "type": "array", "items": { "$ref": "#/$defs/relation" } },
+    "mentions": { "type": "array", "items": { "$ref": "#/$defs/mention" } },
+    "tools": { "type": "array", "items": { "$ref": "#/$defs/tool" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "price_observations": { "type": "array", "items": { "$ref": "#/$defs/price" } },
+    "comparisons": { "type": "array", "items": { "$ref": "#/$defs/comparison" } }
+  },
+  "$defs": {
+    "projectId": { "type": "string", "pattern": "^PSR-[0-9]{4}-[0-9]{3}$" },
+    "recordId": { "type": "string", "pattern": "^PSR-[0-9]{4}-[0-9]{3}-[a-z0-9][a-z0-9-]*$" },
+    "date": { "type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "sourceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^(?:S[-A-Za-z0-9]+|[0-9]+)$" } },
+    "locator": {
+      "type": "object", "additionalProperties": false, "required": ["file", "locator_type", "value"],
+      "properties": { "file": { "type": "string", "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$)).+\\.md$" }, "locator_type": { "enum": ["heading", "text"] }, "value": { "type": "string", "minLength": 1 } }
+    },
+    "project": {
+      "type": "object", "additionalProperties": false,
+      "required": ["project_id", "slug", "title", "status", "catalog_state", "created", "updated", "source_locator"],
+      "properties": {
+        "project_id": { "$ref": "#/$defs/projectId" }, "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "title": { "type": "string", "minLength": 1 }, "status": { "type": "string", "minLength": 1 },
+        "catalog_state": { "enum": ["reviewed-minimal", "reviewed-standard", "reviewed-deep"] },
+        "created": { "$ref": "#/$defs/date" }, "updated": { "$ref": "#/$defs/date" }, "source_locator": { "$ref": "#/$defs/locator" }
+      }
+    },
+    "citation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "project_id", "publisher", "url", "accessed", "evidence_type", "source_locator"],
+      "properties": {
+        "source_id": { "type": "string", "pattern": "^(?:S[-A-Za-z0-9]+|[0-9]+)$" }, "project_id": { "$ref": "#/$defs/projectId" },
+        "publisher": { "type": "string", "minLength": 1 }, "url": { "type": "string", "format": "uri" },
+        "accessed": { "$ref": "#/$defs/date" }, "evidence_type": { "enum": ["primary", "secondary", "community", "local-evidence", "prior-synthesis", "policy", "standard"] },
+        "source_locator": { "$ref": "#/$defs/locator" }
+      }
+    },
+    "common": {
+      "type": "object",
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" } }
+    },
+    "entity": {
+      "allOf": [{ "$ref": "#/$defs/common" }, { "type": "object", "additionalProperties": false,
+        "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "entity_id", "name", "kind", "canonical_url"],
+        "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "entity_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }, "name": { "type": "string", "minLength": 1 }, "kind": { "enum": ["person", "organization", "product", "service", "model", "paper", "benchmark", "method", "hardware"] }, "canonical_url": { "type": "string", "format": "uri" } }
+      }]
+    },
+    "relation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "subject_entity_id", "predicate", "object_entity_id", "observed_on"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "subject_entity_id": { "type": "string" }, "predicate": { "type": "string", "pattern": "^[a-z]+(?:-[a-z]+)*$" }, "object_entity_id": { "type": "string" }, "observed_on": { "$ref": "#/$defs/date" } }
+    },
+    "mention": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "entity_id", "provenance_role", "context"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "entity_id": { "type": "string" }, "provenance_role": { "$ref": "#/$defs/provenanceRole" }, "context": { "type": "string", "minLength": 1 } }
+    },
+    "tool": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "entity_id", "category", "use_case", "availability"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "entity_id": { "type": "string" }, "category": { "type": "string", "minLength": 1 }, "use_case": { "type": "string", "minLength": 1 }, "availability": { "enum": ["open-source", "commercial", "free", "private", "unavailable", "unknown"] } }
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "text", "claimant", "assessment_status", "confidence", "verified_on"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "text": { "type": "string", "minLength": 1 }, "claimant": { "type": "string", "minLength": 1 }, "assessment_status": { "enum": ["verified", "supported", "mixed", "unverified", "contradicted", "needs-verification"] }, "confidence": { "enum": ["low", "medium", "high"] }, "verified_on": { "$ref": "#/$defs/date" } }
+    },
+    "price": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "entity_id", "plan", "amount", "currency", "unit_quantity", "unit", "as_of", "tax_status"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "entity_id": { "type": "string" }, "plan": { "type": "string", "minLength": 1 }, "amount": { "type": "number", "minimum": 0 }, "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }, "unit_quantity": { "type": "number", "exclusiveMinimum": 0 }, "unit": { "type": "string", "minLength": 1 }, "as_of": { "$ref": "#/$defs/date" }, "tax_status": { "enum": ["included", "excluded", "unknown"] } }
+    },
+    "comparison": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "project_id", "updated", "source_ids", "source_locator", "subject_entity_id", "comparator_entity_id", "dimension", "conclusion", "provenance_role", "evidence_strength"],
+      "properties": { "record_id": { "$ref": "#/$defs/recordId" }, "project_id": { "$ref": "#/$defs/projectId" }, "updated": { "$ref": "#/$defs/date" }, "source_ids": { "$ref": "#/$defs/sourceIds" }, "source_locator": { "$ref": "#/$defs/locator" }, "subject_entity_id": { "type": "string" }, "comparator_entity_id": { "type": "string" }, "dimension": { "type": "string", "minLength": 1 }, "conclusion": { "type": "string", "minLength": 1 }, "provenance_role": { "$ref": "#/$defs/provenanceRole" }, "evidence_strength": { "enum": ["low", "medium", "high"] } }
+    },
+    "provenanceRole": { "enum": ["guest", "host", "sponsor", "researcher", "author", "vendor", "system"] }
+  }
+}

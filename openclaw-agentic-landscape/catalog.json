@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-008",
+    "slug": "openclaw-agentic-landscape",
+    "title": "OpenClaw and Business Agentic Architectures: State of Play",
+    "status": "baseline-complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-07-07",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT_openclaw-agentic-landscape_2026-07-07.md",
+      "locator_type": "heading",
+      "value": "# OpenClaw & Business Agentic Architectures: State of Play"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-008",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/openclaw-agentic-landscape/REPORT_openclaw-agentic-landscape_2026-07-07.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT_openclaw-agentic-landscape_2026-07-07.md",
+        "locator_type": "heading",
+        "value": "# OpenClaw & Business Agentic Architectures: State of Play"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-008-claim-summary",
+      "project_id": "PSR-2026-008",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT_openclaw-agentic-landscape_2026-07-07.md",
+        "locator_type": "heading",
+        "value": "# OpenClaw & Business Agentic Architectures: State of Play"
+      },
+      "text": "The July 2026 baseline supports separated agent roles and bounded permissions for business deployments, with recurring review needed as the software changes.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

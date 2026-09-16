@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-009",
+    "slug": "bim-automation",
+    "title": "BIM Automation Research",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-25",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "README.md",
+      "locator_type": "heading",
+      "value": "# BIM Automation Research"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-009",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/bim-automation/README.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# BIM Automation Research"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-009-claim-summary",
+      "project_id": "PSR-2026-009",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "README.md",
+        "locator_type": "heading",
+        "value": "# BIM Automation Research"
+      },
+      "text": "BIM automation opportunities should be evaluated against actual modeling workflows, interoperability limits, and implementation effort.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

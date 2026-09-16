@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-001",
+    "slug": "agent-ui",
+    "title": "Agent UI / AG-UI podcast research brief",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-25",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "agent-ui-podcast-research-2026-05-23.md",
+      "locator_type": "heading",
+      "value": "# Agent UI / AG-UI podcast research brief"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-001",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/agent-ui/agent-ui-podcast-research-2026-05-23.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "agent-ui-podcast-research-2026-05-23.md",
+        "locator_type": "heading",
+        "value": "# Agent UI / AG-UI podcast research brief"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-001-claim-summary",
+      "project_id": "PSR-2026-001",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "agent-ui-podcast-research-2026-05-23.md",
+        "locator_type": "heading",
+        "value": "# Agent UI / AG-UI podcast research brief"
+      },
+      "text": "AG-UI is useful as an event protocol between agents and operator interfaces, while application-specific approval and state design remain necessary.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

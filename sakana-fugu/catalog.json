@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project": {
+    "project_id": "PSR-2026-003",
+    "slug": "sakana-fugu",
+    "title": "Sakana Fugu Research Brief for ProcessSmith and OpenClaw",
+    "status": "complete",
+    "catalog_state": "reviewed-minimal",
+    "created": "2026-06-27",
+    "updated": "2026-07-16",
+    "source_locator": {
+      "file": "REPORT_sakana_fugu_2026-06-27.md",
+      "locator_type": "heading",
+      "value": "# Sakana Fugu Research Brief for ProcessSmith and OpenClaw"
+    }
+  },
+  "citations": [
+    {
+      "source_id": "S-REPORT",
+      "project_id": "PSR-2026-003",
+      "publisher": "ProcessSmith research",
+      "url": "https://github.com/steverea1984-boop/processsmith-research/blob/main/sakana-fugu/REPORT_sakana_fugu_2026-06-27.md",
+      "accessed": "2026-09-15",
+      "evidence_type": "prior-synthesis",
+      "source_locator": {
+        "file": "REPORT_sakana_fugu_2026-06-27.md",
+        "locator_type": "heading",
+        "value": "# Sakana Fugu Research Brief for ProcessSmith and OpenClaw"
+      }
+    }
+  ],
+  "entities": [],
+  "relations": [],
+  "mentions": [],
+  "tools": [],
+  "claims": [
+    {
+      "record_id": "PSR-2026-003-claim-summary",
+      "project_id": "PSR-2026-003",
+      "updated": "2026-07-16",
+      "source_ids": [
+        "S-REPORT"
+      ],
+      "source_locator": {
+        "file": "REPORT_sakana_fugu_2026-06-27.md",
+        "locator_type": "heading",
+        "value": "# Sakana Fugu Research Brief for ProcessSmith and OpenClaw"
+      },
+      "text": "Sakana Fugu is a hosted multi-agent model API rather than an open-weight model for self-hosting.",
+      "claimant": "ProcessSmith research report",
+      "assessment_status": "supported",
+      "confidence": "high",
+      "verified_on": "2026-09-15"
+    }
+  ],
+  "price_observations": [],
+  "comparisons": []
+}

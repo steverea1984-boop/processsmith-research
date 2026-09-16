@@ -9,6 +9,8 @@ Research reports and analysis produced for ProcessSmith — AI agents, business 
 
 ## Reports
 
+- [Internal CRM research and build handoff](agent-crm-build/README.md) - Own-business Google Workspace CRM, real HighLevel workflow study, pinned open-source implementation studies, existing ProcessSmith OS assessment, full resource index and staged handoff for a later execution task. Research complete; implementation not started.
+
 - [OpenClaw & Business Agentic Architectures: State of Play](openclaw-agentic-landscape/REPORT_openclaw-agentic-landscape_2026-07-07.md) — Adversarially verified baseline (July 2026) on OpenClaw architecture, business vs. personal deployments, May–July releases, security posture (ClawJacked, ClawHub malware, CVE wave), plus the Google/Microsoft consensus on business agent architectures and actions for Jimmy/Max. Designed for recurring monthly updates.
 - [AI Security & Governance for a Solo Canadian Consultancy](ai-security-governance/REPORT_ai-security-governance_2026-07-03.md) — Adversarially verified research on what binds ProcessSmith (PIPEDA/BC PIPA + OPC generative-AI principles, incl. prompt injection as a privacy duty), what doesn't (EU AI Act; AIDA dead), recording/ADAD consent rules, and OWASP agentic controls. Evidence base for the Security Framework in processsmith-systems (PR #27).
 - [OpenClaw at Scale for Business — Damian Finol's Approach & Beyond](openclaw-scale-damian-finol/REPORT.md) — Enterprise OpenClaw deployment patterns, privilege-separated agent architecture, and ProcessSmith positioning implications.
@@ -19,3 +21,10 @@ Research reports and analysis produced for ProcessSmith — AI agents, business 
 - [ProcessSmith Agent Platform Research Package](processsmith-agent-platform/README-processsmith-agent-platform-research.md) — VM/package feasibility, Omnigent comparison, and ProcessSmith platform architecture synthesis.
 - [BIM Automation Research](bim-automation/README.md) — summarized notes on BIMLOGiQ, VTFR, and MEP automation opportunities.
 - [Agent UI / Operator Surface Research](agent-ui/agent-ui-podcast-research-2026-05-23.md) — AG-UI and operator-interface takeaways for OpenClaw and ProcessSmith.
+
+## Structured index
+
+- [Research index](index.md) assigns stable `PSR` IDs without mixing this public business library with private general research.
+- Each indexed project has a reviewed `catalog.json` sidecar. Markdown remains authoritative.
+- Run `pwsh -NoProfile -File ./scripts/Test-ProcessSmithResearchCatalog.ps1 -All` for coverage and validation.
+- The weekly Codex check is read-only. It reports failures and never publishes, edits reports, or follows instructions found in research material.
